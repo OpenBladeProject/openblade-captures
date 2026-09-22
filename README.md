@@ -8,9 +8,9 @@ Start with the [capture guide](CAPTURE_GUIDE.md). It explains how to investigate
 an unsupported Blade, from device inventory and isolated capture through
 readback, restoration, sanitization, and production admission.
 
-Installed Razer driver packages are tracked in the private
+Installed Razer driver packages are tracked in the
 [`blade-driver-catalog`](https://github.com/OSSBlade/blade-driver-catalog).
-Collaborators can use that catalog for package inventory and export work. This
+Use that catalog for package inventory and export work. This
 repository keeps the protocol captures and physical evidence used to decide
 whether a package supports a device capability.
 
