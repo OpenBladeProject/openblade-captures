@@ -2,8 +2,8 @@
 
 This runbook is for protocol research on a Razer Blade model that OpenBlade does
 not yet support. It does not authorize firmware writes. A command becomes a
-production capability only after the complete admission gate in this document
-passes for the exact model and firmware family.
+production capability only after it passes every admission check in this guide
+for the exact model and firmware family.
 
 ## Safety model
 
@@ -22,6 +22,50 @@ passes for the exact model and firmware family.
    console and can terminate Codex or PowerShell.
 7. Raw captures stay local. USB traffic can contain serials, unique instance
    paths, keystrokes, and unrelated device data.
+
+## Toolkit
+
+- `tools/Get-BladeCaptureInventory.ps1` collects non-unique model, firmware,
+  Windows, and Razer USB identities.
+- `tools/New-CaptureWorkspace.ps1` creates an ignored local session with a
+  versioned capture plan and operator log.
+- `tools/Invoke-InteractiveUsbPcapCapture.ps1` runs USBPcapCMD in an isolated
+  process group, stops it with a targeted Ctrl+Break, and restores the prior
+  OpenBlade service state. It can select one or more verified device addresses
+  on the same root for bounded cross-device correlation.
+- `tools/Convert-UsbPcapToTransactions.ps1` uses tshark to decode a local PCAP
+  into bounded transaction records.
+- `tools/Compare-CaptureTransactions.ps1` compares baseline and one-action
+  captures. Its semantic fingerprint removes transaction IDs, checksums, and
+  unused padding from validated 90-byte and 374-byte Razer envelopes while
+  retaining command and payload differences.
+- `tools/New-SanitizedCaptureAnnotation.ps1` creates a commit-safe annotation
+  skeleton with capture hashes and restoration results.
+- `tools/Test-CaptureEvidence.ps1` checks provenance, redaction, evidence
+  bounds, capture hashes, and restoration. Before committing, use `-PcapPath`
+  to verify the local capture. Use `-SchemaOnly` only when the raw capture is
+  intentionally unavailable.
+- `tools/Test-UsbPcapShutdownSafety.ps1` checks that capture shutdown cannot
+  broadcast Ctrl+C to the parent console.
+
+Two scripts retain the reviewed cooling-pad fan-context investigation for the
+exact RZ09-0581 BIOS 4.00 target:
+
+- `tools/Invoke-CoolingPadFanContextCapture.ps1` records Synapse-owned
+  Fixed/Auto transitions with lighting frames active, with lighting dark in the
+  same Synapse process session, and after a verified fresh Synapse process
+  session. OpenBlade remains stopped and sends no HID command.
+- `tools/Analyze-CoolingPadFanContextCapture.ps1` compares the three bounded
+  marker windows, requires exact Fixed/Auto request acknowledgements, counts
+  lighting frames, and keeps process-session evidence separate from unresolved
+  literal HID-handle ownership.
+
+Other model-named `Analyze-*`, `Export-*`, `Get-*`, `Invoke-*`, and `Start-*`
+scripts are exact-device helpers retained as reviewed evidence. They can wrap
+an isolated oracle capture, export a bounded fixture, repeat a read-only matrix,
+perform a reversible validation, or inspect a verified vendor backend. Do not
+use them as generic starting points or copy their identities, interfaces,
+addresses, hashes, paths, report geometry, or command bytes to another model.
 
 ## 1. Prepare the machine
 
@@ -84,7 +128,7 @@ $session = .\tools\New-CaptureWorkspace.ps1 `
   -Purpose "battery charge limit query"
 ```
 
-The command creates an ignored directory containing:
+The command creates an ignored directory with:
 
 - `capture-plan.json`: exact target, preconditions, action, expected observation,
   prior-state, readback, and restoration fields;
@@ -133,7 +177,7 @@ Leave the relevant vendor page idle for several seconds, then create the
 changing exactly one value once and leaving enough quiet time before and after
 the action.
 
-The runner:
+The runner does the following:
 
 - starts USBPcapCMD with `CREATE_NEW_PROCESS_GROUP`;
 - records PID, process-group ID, start time, executable, and output ownership;
@@ -165,7 +209,7 @@ annotation.
   -OutputPath (Join-Path $session.Root "comparison.json")
 ```
 
-The generic decoder retains frame number, relative time, direction, endpoint,
+The decoder retains frame number, relative time, direction, endpoint,
 setup fields, bounded payload hex, and length. Treat its output as raw until it
 has been reviewed and sanitized. A payload difference is a candidate, not a
 command definition. The comparer recognizes checksum-valid 90-byte and
@@ -250,8 +294,10 @@ as supported, absent, software-only, or not investigated.
 Copy `templates/device-coverage.template.json` for the target. Its schema-2
 nested matrix tracks each power context, USB-C power class, lighting variant,
 color/duration/direction/region group, lifecycle event, conflict behavior, and
-failure mode independently. Mark a missing target feature `Absent`; do not
-delete the row or collapse several variants into one status.
+failure mode independently. Keep each capability at `NotInvestigated` until
+evidence advances it through capture, query validation, setter validation, and
+production admission. Mark a missing target feature `Absent`; do not delete the
+row or collapse several variants into one status.
 
 | Area | Minimum capture set |
 | --- | --- |
@@ -282,7 +328,7 @@ exact model and accepted firmware, and use a new ignored output directory. Do
 not loosen a hard-coded identity, address, path, signature, or hash check to
 make the helper run on another machine.
 
-A retained helper usually belongs to one of these classes:
+A retained helper usually has one of these jobs:
 
 1. An oracle-capture wrapper isolates OpenBlade, resolves the USBPcap address,
    keeps the PCAP local, and preserves operator-action and capture-state files.
@@ -299,9 +345,11 @@ A retained helper usually belongs to one of these classes:
    analysis does not authorize a kernel driver, vendor dependency, or setter.
 
 Use `decoded/*-device-coverage.json` as the authoritative status matrix for an
-exact model and firmware scope. A matching `decoded/*-evidence.json` may
-summarize the admitted evidence, while other decoded fixtures and annotations
-retain the bounded details and limitations.
+exact model and firmware scope. A matching `decoded/*-evidence.json` can
+summarize admitted transport, controls, lifecycle behavior, and failure
+handling. Other decoded fixtures can hold bounded reports, effect oracles, key
+maps, and validation results. Matching annotations record provenance,
+isolation, restoration, negative results, and limitations.
 
 Advance every coverage leaf independently. A validated base control or effect
 does not automatically validate its parameters, getter, readback, power
@@ -347,7 +395,8 @@ committed annotation without its intentionally untracked PCAP, use the explicit
 `-SchemaOnly` mode; it validates schema and redaction but reports that the PCAP
 hash was not independently verified.
 
-Run the safe offline regressions after changing the toolkit:
+Run the offline regressions after changing schemas, comparison, sanitization,
+coverage, or other toolkit behavior:
 
 ```powershell
 & "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" `
@@ -361,8 +410,8 @@ PowerShell host otherwise waits for a mandatory-parameter prompt.
 
 ## 10. Production admission
 
-A capability is ready for the OpenBlade production table only when all of these
-are independently true:
+A capability is ready for the OpenBlade production table only when each check
+passes independently:
 
 - exact model/PID/firmware scope is explicit;
 - at least one sanitized oracle capture is committed;
