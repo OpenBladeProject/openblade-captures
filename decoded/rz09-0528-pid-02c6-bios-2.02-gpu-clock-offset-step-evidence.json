@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "evidenceKind": "gpuClockOffsetCrossApiStepValidationPartial",
+  "evidenceKind": "gpuClockOffsetCrossApiInstalledValidation",
   "device": {
     "modelNumber": "RZ09-0528",
     "vendorIdHex": "1532",
@@ -60,7 +60,7 @@
       "Custom"
     ],
     "performanceModeReadbackRecorded": true,
-    "installedServiceValidationPerformed": false,
+    "installedServiceValidationPerformed": true,
     "lifecycleValidationPerformed": false
   },
   "pendingValidation": {
@@ -75,7 +75,7 @@
       "customCombination": "Low/Low"
     },
     "installedServiceApplyReadbackRestore": {
-      "status": "NotPerformed"
+      "status": "CompletedByInstalledService"
     },
     "lifecycle": {
       "status": "NotPerformed"
@@ -85,15 +85,15 @@
     }
   },
   "admission": {
-    "gpuClockOffsets": "QueryValidated",
-    "gpuOverclockAccess": "ObservedOnly",
-    "advancedByThisSession": false,
-    "productionWritesAuthorized": false,
-    "reason": "Developer step and confirmed AC mode-matrix validation succeeded; installed-service validation remains incomplete and coverage is not advanced by this evidence file."
+    "gpuClockOffsets": "ProductionAdmitted",
+    "gpuOverclockAccess": "ReadWrite",
+    "advancedByThisSession": true,
+    "productionWritesAuthorized": true,
+    "reason": "Exact-device developer AC mode matrix and installed-service typed apply, cross-API readback, disable-to-zero, and restoration succeeded. The vendor overclock toggle and untested lifecycle remain unadmitted."
   },
   "limits": [
     "The first two step-only sessions contain no thermal-mode readback; the later matrix independently confirms Balanced, Silent, Performance, and Custom Low/Low.",
-    "No installed production GPU write was performed.",
+    "Installed service 0.23.0 applied +5/+5 MHz, disabled to zero, and restored zero with NVAPI and normalized NVML confirmation; saved profile intent remained unchanged.",
     "No sleep, resume, reboot, power-source transition, or Synapse-toggle lifecycle was validated. Matrix thermal changes were restored after each offset round trip.",
     "Five MHz is a successfully tested UI step, not proof of a hardware minimum or every range endpoint."
   ],
@@ -221,5 +221,57 @@
       "memoryMHz": 0
     },
     "serviceRestorationFailures": []
+  },
+  "installedServiceValidation": {
+    "installedProductVersion": "0.23.0+d60d1c16b6b6295f52e3dfa261c67604448ac24c",
+    "completedAtUtc": "2026-09-27T20:47:30.7432975Z",
+    "controller": "Installed OpenBlade service through typed IPC",
+    "success": true,
+    "restored": true,
+    "validationExitCode": 0,
+    "serviceRestorationFailures": [],
+    "profileIntentUnchanged": true,
+    "readbacks": {
+      "baseline": {
+        "Nvapi": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "Nvml": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        }
+      },
+      "applied": {
+        "Nvapi": {
+          "coreMHz": 5,
+          "memoryMHz": 5
+        },
+        "Nvml": {
+          "coreMHz": 5,
+          "memoryMHz": 5
+        }
+      },
+      "disabled": {
+        "Nvapi": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "Nvml": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        }
+      },
+      "restored": {
+        "Nvapi": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "Nvml": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        }
+      }
+    }
   }
 }

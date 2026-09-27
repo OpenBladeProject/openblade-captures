@@ -31,7 +31,7 @@
         "presets": "ProductionAdmitted",
         "customCpuLevels": "ProductionAdmitted",
         "customGpuLevels": "ProductionAdmitted",
-        "gpuClockOffsets": "QueryValidated",
+        "gpuClockOffsets": "ProductionAdmitted",
         "gpuClockOffsetUiPolicy": "Captured",
         "cpuPowerLimitWatts": "Captured",
         "cpuVoltageOptimizer": "Captured",
@@ -175,7 +175,7 @@
     },
     "specialKeys": {
       "functionLayerReports": "Captured",
-      "performanceKey": "Captured",
+      "performanceKey": "ProductionAdmitted",
       "m1PageUp": "Captured",
       "m2PageDown": "Captured",
       "m3GamingMode": "ProductionAdmitted",
@@ -229,6 +229,8 @@
     }
   },
   "notes": [
+    "September 27 installed 0.23.0+d60d1c16 validated exact RTX 5090 Laptop GPU offsets through typed service IPC: NVAPI and normalized NVML confirmed 0/0, +5/+5, disable-to-zero and restoration-to-zero; profiles were unchanged and services restored. Together with the developer four-mode AC matrix, gpuClockOffsets advances to ProductionAdmitted. Vendor toggle ownership, range endpoints and lifecycle do not advance. See the September 27 GPU step annotation.",
+    "September 27 installed Fn+P changed confirmed Balanced to Silent at 36.40 seconds, physically confirmed by the user. The return to Balanced at 58.91 seconds was explicitly a manual user action. The restorer refused after user fan intent changed, preserving user choices; final baseline passed 38 checks. performanceKey advances to ProductionAdmitted. M1/M2, ordinary-P discrimination and lifecycle do not advance. See the September 27 Fn+P annotation.",
     "AC Balanced, Silent, Performance, Automatic fan state, paired setters, typed readback, and restoration are production-admitted.",
     "AC Custom selection plus CPU and GPU Low, Medium, and High are production-admitted with exact raw values 00, 01, and 02. Exact production round trips validated Low/Low, High/Low, and Medium/High with independent readback and restoration to Balanced/Automatic.",
     "RZ09-0528 CPU High permits only GPU Low in Synapse; this exact-model combination constraint must not be generalized to PID 02E0.",
@@ -255,7 +257,7 @@
     "The production display query reported 2560x1600, fixed 60/240 Hz, Dynamic 48-240 Hz, HDR support, and five SDR color profiles. A bounded Windows-API round trip enabled HDR, confirmed SDR profile controls unavailable, restored HDR off, and reconfirmed the original display state.",
     "Malformed, checksum, command-class, command-id, status, and mid-transaction transport failures are deterministic software-only safety cases. The exact PID 02C6 production path uses the same tested 91-byte actor, poisons ambiguous sessions, and never retries an indeterminate write; no malformed report was injected into the physical laptop.",
     "A read-only NVML query selected the NVIDIA GeForce RTX 5090 Laptop GPU, read zero current offsets, and reported core -1000..1000 MHz and memory -2000..6000 MHz ranges; production remains gated on exact Custom-mode admission.",
-    "A fully isolated exact-device GPU offset validator requested the adjacent pair core +1 MHz and memory +1 MHz from a zero baseline. NVIDIA did not confirm the requested pair, and the validator independently restored and re-read 0/0. This negative control leaves gpuClockOffsets QueryValidated and the GPU overclock write path ObservedOnly; the unowned Synapse GPU Overclock toggle is not assumed to be the cause.",
+    "A fully isolated exact-device GPU offset validator requested the adjacent pair core +1 MHz and memory +1 MHz from a zero baseline. NVIDIA did not confirm the requested pair, and the validator independently restored and re-read 0/0. This historical negative control left gpuClockOffsets QueryValidated and the GPU overclock write path ObservedOnly; the unowned Synapse GPU Overclock toggle is not assumed to be the cause.",
     "Limits 50 through 80 in five-percent steps and protection-off completed exact-device typed apply/readback/restore validation and are production-admitted.",
     "External-change detection and explicit scoped reclaim are SoftwareOnly service-runtime behaviors with deterministic drift, latch, readback, and reclaim tests. They do not claim a new physical Synapse action capture.",
     "Temporary full charge enable, cancel, query, readback, and restoration are production-admitted.",
@@ -277,7 +279,7 @@
     "Active Synapse Spectrum traffic can produce rejected TransactionMismatch failures.",
     "The exact production port admits validated PID 02C6 07/8C responses 1111 (FullPower280W), 0711 (UsbCPower100W), and 0011 (Battery), each exact-model gated. The 0711 admission followed three identical direct USB-C samples in the corrected matrix and no longer relies on PID 02E0 evidence.",
     "Two controller-isolated 60-second special-key retries received zero physical input, including one window with Synapse, both verified Razer controller services, and OpenBlade inactive. They are failed zero-input sessions and do not advance the captured M1, M2, Fn+P, or normal-layer leaves.",
-    "A clean exact-device production probe decoded Fn+Game, Fn+Performance, and Fn+MicrophoneMute as M3/M4/M5 with prefixes 040A0300/040AD300/040AD400, 12 target messages, and no identity failures. A separate discrimination retry proved M1, M2, and Fn+P expose only indistinguishable generic Fn reports while ordinary Page Up/Page Down pass through. Production admission is therefore deliberately partial: M3-M5 only; M1/M2/Fn+P remain Captured.",
+    "A clean exact-device production probe decoded Fn+Game, Fn+Performance, and Fn+MicrophoneMute as M3/M4/M5 with prefixes 040A0300/040AD300/040AD400, 12 target messages, and no identity failures. A separate discrimination retry proved M1, M2, and Fn+P expose only indistinguishable generic Fn reports while ordinary Page Up/Page Down pass through. At that checkpoint production admission was deliberately partial: M3-M5 only; M1/M2/Fn+P remained Captured.",
     "A Synapse-present no-Fn retry of Game, Performance, and microphone mute produced zero target Raw Input messages. The result does not distinguish firmware ownership from vendor-stack ownership. Read-only post-probe production state was barrel AC, Performance/Automatic, Gaming Off, Driver mode, Static logo, keyboard brightness raw 129 (51 percent), and one default Windows Core Audio capture endpoint independently read Unmuted."
   ]
 }

@@ -111,23 +111,40 @@
   ],
   "admission": {
     "inputDeliveryObserved": true,
-    "productionAdmissionAdvanced": false,
-    "fnPInstalledHandlerValidated": false,
+    "productionAdmissionAdvanced": true,
+    "fnPInstalledHandlerValidated": true,
     "m1BindingsAdmitted": false,
     "m2BindingsAdmitted": false,
-    "reason": "Observed input delivery only; installed-handler physical validation is pending."
+    "reason": "Installed exact-device Fn+P changed confirmed Balanced to Silent with user confirmation. Later Balanced was explicitly a user action. M1/M2 and lifecycle validation do not advance."
   },
   "pendingValidation": [
-    "Installed handler dispatch through the typed FunctionP shortcut",
-    "Performance result and restoration",
     "Ordinary P pass-through with the installed fix",
     "External-keyboard discrimination",
     "Rapid or reordered input handling",
     "Lifecycle behavior"
   ],
   "limits": [
-    "Input observation does not establish installed-fix behavior or performance restoration.",
+    "Installed Fn+P behavior is confirmed; automatic restoration was refused to preserve subsequent user fan intent. Final read-only baseline passed.",
     "No M1/M2 binding admission follows from these observations.",
     "No suppression of ordinary P or external-keyboard input was validated."
-  ]
+  ],
+  "installedHandlerValidation": {
+    "installedProductVersion": "0.23.0+d60d1c16b6b6295f52e3dfa261c67604448ac24c",
+    "observationDate": "2026-09-27",
+    "observerReadOnly": true,
+    "durationSeconds": 120.0945693,
+    "samples": 469,
+    "baselinePerformance": "Balanced",
+    "fnPPerformance": "Silent",
+    "fnPTransitionSeconds": 36.3977798,
+    "physicalFnPOperatorConfirmed": true,
+    "subsequentPerformance": "Balanced",
+    "subsequentTransitionSeconds": 58.9128416,
+    "subsequentChangeOperatorConfirmedManual": true,
+    "subsequentChangeAttributedToPlainP": false,
+    "automaticRestorationPerformed": false,
+    "restorationDisposition": "Restorer refused because the user changed fan intent; user choices were preserved.",
+    "finalBaselinePassed": true,
+    "finalBaselineChecks": 38
+  }
 }

@@ -62,8 +62,8 @@ Assert-True (
     'GPU overclock access must remain observed-only.'
 Assert-True (
     $coverage.capabilities.performance.ac.gpuClockOffsets -ceq (
-        'QueryValidated')) `
-    'Coverage must not advance the GPU offset setter.'
+        'ProductionAdmitted')) `
+    'Current GPU offset coverage must follow installed-service validation.'
 Assert-True (
     $coverage.capabilities.performance.ac.gpuOverclockToggle -ceq 'Captured') `
     'Coverage must not advance the unowned GPU overclock toggle.'
@@ -88,3 +88,15 @@ Assert-True ($annotation.privacy.uniqueIdentifiersRetained -eq $false) `
     'Sanitized GPU evidence must not retain unique identifiers.'
 
 Write-Host 'RZ09-0528 GPU clock-offset evidence tests passed.'
+
+$installedAnnotation = Get-Content -Raw (Join-Path $repository 'annotations/2026-09-27-rz09-0528-gpu-clock-offset-step-validation.json') | ConvertFrom-Json
+$installed = $installedAnnotation.installedServiceValidation
+Assert-True ($installed.success -and $installed.restored -and $installed.validationExitCode -eq 0) 'Installed GPU validation must succeed and restore.'
+Assert-True ($installed.profileIntentUnchanged -and $installed.serviceRestorationFailures.Count -eq 0) 'Installed GPU validation must preserve profiles and restore services.'
+foreach ($phase in @('baseline', 'applied', 'disabled', 'restored')) {
+    $expected = if ($phase -eq 'applied') { 5 } else { 0 }
+    foreach ($api in @('Nvapi', 'Nvml')) {
+        Assert-True ($installed.readbacks.$phase.$api.coreMHz -eq $expected -and $installed.readbacks.$phase.$api.memoryMHz -eq $expected) "Installed GPU $phase/$api pair is incorrect."
+    }
+}
+Assert-True ($installedAnnotation.pendingValidation.lifecycle.status -ceq 'NotPerformed') 'GPU lifecycle must not advance with the installed round trip.'
