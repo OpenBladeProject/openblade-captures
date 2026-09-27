@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "evidenceProvenance": {
+    "controller": "Attended exact-device Raw Input probe",
+    "role": "InputObservation",
+    "trackingIssue": "https://github.com/OpenBladeProject/openblade-core/issues/593",
+    "observationDate": "2026-09-27",
+    "durationSeconds": 60,
+    "operatorConfirmedRequestedSequence": true,
+    "source": "Sanitized developer observation draft from the first six requested actions",
+    "openBladeTypedApplyPerformed": false,
+    "installedFixBehaviorConfirmed": false
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "vendorIdHex": "1532",
+    "productIdHex": "02C6",
+    "bios": "2.02",
+    "inputInterface": "MI_01"
+  },
+  "decodedEvidence": "decoded/rz09-0528-pid-02c6-bios-2.02-fn-p-raw-keyboard-evidence.json",
+  "inputFormat": {
+    "hidReportByteLength": 16,
+    "hidPrefixRemainderZeroPadded": true,
+    "rawKeyboardSource": "Exact PID 02C6 MI_01 collection",
+    "e0FlagHex": "02",
+    "breakFlagHex": "01",
+    "lowLevelHookEventsUsedForDecoderDerivation": false
+  },
+  "observations": [
+    {
+      "sequence": 1,
+      "requestedAction": "Fn+Page Up",
+      "fnHidPrefixBefore": "04 0A 00",
+      "rawKeyboardMake": {
+        "makeCodeHex": "49",
+        "virtualKeyHex": "21",
+        "flagsHex": "02"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "49",
+        "flagsHex": "03"
+      },
+      "fnHidPrefixAfter": "04 00 00"
+    },
+    {
+      "sequence": 2,
+      "requestedAction": "Fn+Page Down",
+      "fnHidPrefixBefore": "04 0A 00",
+      "rawKeyboardMake": {
+        "makeCodeHex": "51",
+        "virtualKeyHex": "22",
+        "flagsHex": "02"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "51",
+        "flagsHex": "03"
+      },
+      "fnHidPrefixAfter": "04 00 00"
+    },
+    {
+      "sequence": 3,
+      "requestedAction": "Fn+P",
+      "fnHidPrefixBefore": "04 0A 00",
+      "rawKeyboardMake": {
+        "makeCodeHex": "19",
+        "virtualKeyHex": "50",
+        "flagsHex": "00"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "19",
+        "flagsHex": "01"
+      },
+      "fnHidPrefixAfter": "04 00 00"
+    },
+    {
+      "sequence": 4,
+      "requestedAction": "Page Up",
+      "fnHidPrefixBefore": null,
+      "rawKeyboardMake": {
+        "makeCodeHex": "49",
+        "virtualKeyHex": "21",
+        "flagsHex": "02"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "49",
+        "flagsHex": "03"
+      },
+      "fnHidPrefixAfter": null
+    },
+    {
+      "sequence": 5,
+      "requestedAction": "Page Down",
+      "fnHidPrefixBefore": null,
+      "rawKeyboardMake": {
+        "makeCodeHex": "51",
+        "virtualKeyHex": "22",
+        "flagsHex": "02"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "51",
+        "flagsHex": "03"
+      },
+      "fnHidPrefixAfter": null
+    },
+    {
+      "sequence": 6,
+      "requestedAction": "P",
+      "fnHidPrefixBefore": null,
+      "rawKeyboardMake": {
+        "makeCodeHex": "19",
+        "virtualKeyHex": "50",
+        "flagsHex": "00"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "19",
+        "flagsHex": "01"
+      },
+      "fnHidPrefixAfter": null
+    }
+  ],
+  "operatorObservation": {
+    "installedFnPChangedPerformanceMode": false,
+    "basis": "Operator report",
+    "independentPerformanceReadbackRecorded": false
+  },
+  "interpretation": [
+    "Fn+P supplies the same raw P make/break as ordinary P, correlated with the separate exact-device Fn HID state.",
+    "Fn+Page Up and Fn+Page Down observations do not admit M1/M2 bindings.",
+    "Only the first six requested sequences are retained; later incidental typing is excluded."
+  ],
+  "admission": {
+    "inputDeliveryObserved": true,
+    "productionAdmissionAdvanced": false,
+    "fnPInstalledHandlerValidated": false,
+    "m1BindingsAdmitted": false,
+    "m2BindingsAdmitted": false,
+    "reason": "Observed input delivery only; installed-handler physical validation is pending."
+  },
+  "pendingValidation": [
+    "Installed handler dispatch through the typed FunctionP shortcut",
+    "Performance result and restoration",
+    "Ordinary P pass-through with the installed fix",
+    "External-keyboard discrimination",
+    "Rapid or reordered input handling",
+    "Lifecycle behavior"
+  ],
+  "privacy": {
+    "rawOutputsCommitted": false,
+    "serialNumbersRetained": false,
+    "devicePathsRetained": false,
+    "localPathsRetained": false,
+    "userProfileNamesRetained": false,
+    "uniqueIdentifiersRetained": false,
+    "incidentalTypingRetained": false
+  }
+}
