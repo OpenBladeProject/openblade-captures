@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "gpuClockOffsetCrossApiInstalledValidation",
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "vendorIdHex": "1532",
+    "productIdHex": "02C6",
+    "bios": "2.02",
+    "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU",
+    "nvidiaDriver": null
+  },
+  "annotation": "2026-09-27-rz09-0528-gpu-clock-offset-step-validation.json",
+  "validatedLogicalRangesMHz": {
+    "nvidiaApi": {
+      "coreMinimum": -1000,
+      "coreMaximum": 1000,
+      "memoryMinimum": -1000,
+      "memoryMaximum": 3000
+    },
+    "vendorPolicy": {
+      "coreMinimum": -1000,
+      "coreMaximum": 400,
+      "memoryMinimum": -1000,
+      "memoryMaximum": 3000
+    },
+    "rangeEndpointsWriteValidated": false
+  },
+  "nvmlRepresentation": {
+    "coreMultiplier": 1,
+    "memoryMultiplier": 2,
+    "mappingConfirmedByIndependentNvapi": true,
+    "logicalReadbacksPrinted": true,
+    "rawNvmlReadbacksPrinted": false,
+    "scope": "Exact RTX 5090 Laptop GPU; matrix environment records NVIDIA driver 617.14. Earlier step-only output did not record its driver version."
+  },
+  "validation": {
+    "adjacentStepMHz": 1,
+    "adjacentStepReadbackConfirmed": true,
+    "adjacentStepRestored": true,
+    "uiStepMHz": 5,
+    "uiStepReadbackConfirmed": true,
+    "uiStepIndependentNvapiConfirmed": true,
+    "uiStepRestored": true,
+    "baselineLogicalMHz": {
+      "coreMHz": 0,
+      "memoryMHz": 0
+    },
+    "uiStepLogicalMHz": {
+      "coreMHz": 5,
+      "memoryMHz": 5
+    },
+    "finalLogicalMHz": {
+      "coreMHz": 0,
+      "memoryMHz": 0
+    },
+    "performanceModes": [
+      "Balanced",
+      "Silent",
+      "Performance",
+      "Custom"
+    ],
+    "performanceModeReadbackRecorded": true,
+    "installedServiceValidationPerformed": true,
+    "lifecycleValidationPerformed": false
+  },
+  "pendingValidation": {
+    "performanceModeMatrix": {
+      "status": "CompletedByDeveloperRunner",
+      "modes": [
+        "Balanced",
+        "Silent",
+        "Performance",
+        "Custom"
+      ],
+      "customCombination": "Low/Low"
+    },
+    "installedServiceApplyReadbackRestore": {
+      "status": "CompletedByInstalledService"
+    },
+    "lifecycle": {
+      "status": "NotPerformed"
+    },
+    "synapseToggleOwnership": {
+      "status": "NotEstablished"
+    }
+  },
+  "admission": {
+    "gpuClockOffsets": "ProductionAdmitted",
+    "gpuOverclockAccess": "ReadWrite",
+    "advancedByThisSession": true,
+    "productionWritesAuthorized": true,
+    "reason": "Exact-device developer AC mode matrix and installed-service typed apply, cross-API readback, disable-to-zero, and restoration succeeded. The vendor overclock toggle and untested lifecycle remain unadmitted."
+  },
+  "limits": [
+    "The first two step-only sessions contain no thermal-mode readback; the later matrix independently confirms Balanced, Silent, Performance, and Custom Low/Low.",
+    "Installed service 0.23.0 applied +5/+5 MHz, disabled to zero, and restored zero with NVAPI and normalized NVML confirmation; saved profile intent remained unchanged.",
+    "No sleep, resume, reboot, power-source transition, or Synapse-toggle lifecycle was validated. Matrix thermal changes were restored after each offset round trip.",
+    "Five MHz is a successfully tested UI step, not proof of a hardware minimum or every range endpoint."
+  ],
+  "performanceModeValidation": {
+    "startedAtUtc": "2026-09-27T13:01:12.5442655-07:00",
+    "completedAtUtc": "2026-09-27T13:01:34.5951064-07:00",
+    "sku": "RZ09-05289EN4",
+    "nvidiaDriver": "617.14",
+    "validationBuildSha256": "1D2AB0F3A5064E7FDDD6E1CD8D6E3C53D9717CCAC2A8F761EC6669A4A6BD5FE6",
+    "sourceRevision": "49fda88c with uncommitted issue-591 developer validation changes",
+    "adapter": "FullPower280W",
+    "baselinePerformance": "Balanced",
+    "baselineFans": "Automatic",
+    "isolationGuards": {
+      "confirmationMatched": true,
+      "exactHost": true,
+      "exactDevice": true,
+      "synapseInactive": true,
+      "openBladeServiceInactive": true,
+      "gpuTuningToolsInactive": true
+    },
+    "results": [
+      {
+        "mode": "Balanced",
+        "fans": "Automatic",
+        "customCpu": null,
+        "customGpu": null,
+        "adapter": "FullPower280W",
+        "modeConfirmedBeforeGpuApply": true,
+        "modeConfirmedBeforeGpuRestore": true,
+        "modeConfirmedAfterGpuRestore": true,
+        "baselineLogicalMHz": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "appliedLogicalMHz": {
+          "coreMHz": 5,
+          "memoryMHz": 5
+        },
+        "restoredLogicalMHz": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "nvapiAndNvmlReadbackConfirmed": true,
+        "thermalRestoredToBalancedAutomatic": true
+      },
+      {
+        "mode": "Silent",
+        "fans": "Automatic",
+        "customCpu": null,
+        "customGpu": null,
+        "adapter": "FullPower280W",
+        "modeConfirmedBeforeGpuApply": true,
+        "modeConfirmedBeforeGpuRestore": true,
+        "modeConfirmedAfterGpuRestore": true,
+        "baselineLogicalMHz": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "appliedLogicalMHz": {
+          "coreMHz": 5,
+          "memoryMHz": 5
+        },
+        "restoredLogicalMHz": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "nvapiAndNvmlReadbackConfirmed": true,
+        "thermalRestoredToBalancedAutomatic": true
+      },
+      {
+        "mode": "Performance",
+        "fans": "Automatic",
+        "customCpu": null,
+        "customGpu": null,
+        "adapter": "FullPower280W",
+        "modeConfirmedBeforeGpuApply": true,
+        "modeConfirmedBeforeGpuRestore": true,
+        "modeConfirmedAfterGpuRestore": true,
+        "baselineLogicalMHz": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "appliedLogicalMHz": {
+          "coreMHz": 5,
+          "memoryMHz": 5
+        },
+        "restoredLogicalMHz": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "nvapiAndNvmlReadbackConfirmed": true,
+        "thermalRestoredToBalancedAutomatic": true
+      },
+      {
+        "mode": "Custom",
+        "fans": "Automatic",
+        "customCpu": "Low",
+        "customGpu": "Low",
+        "adapter": "FullPower280W",
+        "modeConfirmedBeforeGpuApply": true,
+        "modeConfirmedBeforeGpuRestore": true,
+        "modeConfirmedAfterGpuRestore": true,
+        "baselineLogicalMHz": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "appliedLogicalMHz": {
+          "coreMHz": 5,
+          "memoryMHz": 5
+        },
+        "restoredLogicalMHz": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "nvapiAndNvmlReadbackConfirmed": true,
+        "thermalRestoredToBalancedAutomatic": true
+      }
+    ],
+    "success": true,
+    "finalPerformance": "Balanced",
+    "finalFans": "Automatic",
+    "finalOffsets": {
+      "coreMHz": 0,
+      "memoryMHz": 0
+    },
+    "serviceRestorationFailures": []
+  },
+  "installedServiceValidation": {
+    "installedProductVersion": "0.23.0+d60d1c16b6b6295f52e3dfa261c67604448ac24c",
+    "completedAtUtc": "2026-09-27T20:47:30.7432975Z",
+    "controller": "Installed OpenBlade service through typed IPC",
+    "success": true,
+    "restored": true,
+    "validationExitCode": 0,
+    "serviceRestorationFailures": [],
+    "profileIntentUnchanged": true,
+    "readbacks": {
+      "baseline": {
+        "Nvapi": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "Nvml": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        }
+      },
+      "applied": {
+        "Nvapi": {
+          "coreMHz": 5,
+          "memoryMHz": 5
+        },
+        "Nvml": {
+          "coreMHz": 5,
+          "memoryMHz": 5
+        }
+      },
+      "disabled": {
+        "Nvapi": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "Nvml": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        }
+      },
+      "restored": {
+        "Nvapi": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        },
+        "Nvml": {
+          "coreMHz": 0,
+          "memoryMHz": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "evidenceProvenance": {
+    "controller": "Attended exact-device Raw Input probe",
+    "role": "InputObservation",
+    "trackingIssue": "https://github.com/OpenBladeProject/openblade-core/issues/593",
+    "observationDate": "2026-09-27",
+    "durationSeconds": 60,
+    "operatorConfirmedRequestedSequence": true,
+    "source": "Sanitized developer observation draft from the first six requested actions",
+    "openBladeTypedApplyPerformed": false,
+    "installedFixBehaviorConfirmed": true
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "vendorIdHex": "1532",
+    "productIdHex": "02C6",
+    "bios": "2.02",
+    "inputInterface": "MI_01"
+  },
+  "decodedEvidence": "decoded/rz09-0528-pid-02c6-bios-2.02-fn-p-raw-keyboard-evidence.json",
+  "inputFormat": {
+    "hidReportByteLength": 16,
+    "hidPrefixRemainderZeroPadded": true,
+    "rawKeyboardSource": "Exact PID 02C6 MI_01 collection",
+    "e0FlagHex": "02",
+    "breakFlagHex": "01",
+    "lowLevelHookEventsUsedForDecoderDerivation": false
+  },
+  "observations": [
+    {
+      "sequence": 1,
+      "requestedAction": "Fn+Page Up",
+      "fnHidPrefixBefore": "04 0A 00",
+      "rawKeyboardMake": {
+        "makeCodeHex": "49",
+        "virtualKeyHex": "21",
+        "flagsHex": "02"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "49",
+        "flagsHex": "03"
+      },
+      "fnHidPrefixAfter": "04 00 00"
+    },
+    {
+      "sequence": 2,
+      "requestedAction": "Fn+Page Down",
+      "fnHidPrefixBefore": "04 0A 00",
+      "rawKeyboardMake": {
+        "makeCodeHex": "51",
+        "virtualKeyHex": "22",
+        "flagsHex": "02"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "51",
+        "flagsHex": "03"
+      },
+      "fnHidPrefixAfter": "04 00 00"
+    },
+    {
+      "sequence": 3,
+      "requestedAction": "Fn+P",
+      "fnHidPrefixBefore": "04 0A 00",
+      "rawKeyboardMake": {
+        "makeCodeHex": "19",
+        "virtualKeyHex": "50",
+        "flagsHex": "00"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "19",
+        "flagsHex": "01"
+      },
+      "fnHidPrefixAfter": "04 00 00"
+    },
+    {
+      "sequence": 4,
+      "requestedAction": "Page Up",
+      "fnHidPrefixBefore": null,
+      "rawKeyboardMake": {
+        "makeCodeHex": "49",
+        "virtualKeyHex": "21",
+        "flagsHex": "02"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "49",
+        "flagsHex": "03"
+      },
+      "fnHidPrefixAfter": null
+    },
+    {
+      "sequence": 5,
+      "requestedAction": "Page Down",
+      "fnHidPrefixBefore": null,
+      "rawKeyboardMake": {
+        "makeCodeHex": "51",
+        "virtualKeyHex": "22",
+        "flagsHex": "02"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "51",
+        "flagsHex": "03"
+      },
+      "fnHidPrefixAfter": null
+    },
+    {
+      "sequence": 6,
+      "requestedAction": "P",
+      "fnHidPrefixBefore": null,
+      "rawKeyboardMake": {
+        "makeCodeHex": "19",
+        "virtualKeyHex": "50",
+        "flagsHex": "00"
+      },
+      "rawKeyboardBreak": {
+        "makeCodeHex": "19",
+        "flagsHex": "01"
+      },
+      "fnHidPrefixAfter": null
+    }
+  ],
+  "operatorObservation": {
+    "installedFnPChangedPerformanceMode": true,
+    "basis": "User physical-key confirmation and read-only installed-service performance watch",
+    "independentPerformanceReadbackRecorded": true
+  },
+  "interpretation": [
+    "Fn+P supplies the same raw P make/break as ordinary P, correlated with the separate exact-device Fn HID state.",
+    "Fn+Page Up and Fn+Page Down observations do not admit M1/M2 bindings.",
+    "Only the first six requested sequences are retained; later incidental typing is excluded."
+  ],
+  "admission": {
+    "inputDeliveryObserved": true,
+    "productionAdmissionAdvanced": true,
+    "fnPInstalledHandlerValidated": true,
+    "m1BindingsAdmitted": false,
+    "m2BindingsAdmitted": false,
+    "reason": "Installed exact-device Fn+P changed confirmed Balanced to Silent with user confirmation. Later Balanced was explicitly a user action. M1/M2 and lifecycle validation do not advance."
+  },
+  "pendingValidation": [
+    "Ordinary P pass-through with the installed fix",
+    "External-keyboard discrimination",
+    "Rapid or reordered input handling",
+    "Lifecycle behavior"
+  ],
+  "privacy": {
+    "rawOutputsCommitted": false,
+    "serialNumbersRetained": false,
+    "devicePathsRetained": false,
+    "localPathsRetained": false,
+    "userProfileNamesRetained": false,
+    "uniqueIdentifiersRetained": false,
+    "incidentalTypingRetained": false
+  },
+  "installedHandlerValidation": {
+    "installedProductVersion": "0.23.0+d60d1c16b6b6295f52e3dfa261c67604448ac24c",
+    "observationDate": "2026-09-27",
+    "observerReadOnly": true,
+    "durationSeconds": 120.0945693,
+    "samples": 469,
+    "baselinePerformance": "Balanced",
+    "fnPPerformance": "Silent",
+    "fnPTransitionSeconds": 36.3977798,
+    "physicalFnPOperatorConfirmed": true,
+    "subsequentPerformance": "Balanced",
+    "subsequentTransitionSeconds": 58.9128416,
+    "subsequentChangeOperatorConfirmedManual": true,
+    "subsequentChangeAttributedToPlainP": false,
+    "automaticRestorationPerformed": false,
+    "restorationDisposition": "Restorer refused because the user changed fan intent; user choices were preserved.",
+    "finalBaselinePassed": true,
+    "finalBaselineChecks": 38
+  }
+}

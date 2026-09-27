@@ -207,7 +207,6 @@ Assert-True (
 
 foreach ($leaf in @(
         'functionLayerReports',
-        'performanceKey',
         'm1PageUp',
         'm2PageDown')) {
     Assert-True ($coverage.capabilities.specialKeys.$leaf -ceq 'Captured') `
@@ -259,3 +258,12 @@ Assert-True (
     'Media-row acceptance must not retain unique USB identifiers.'
 
 Write-Host 'RZ09-0528 special-key evidence tests passed.'
+
+$fnP = Get-Content -Raw (Join-Path $repository 'annotations/2026-09-27-rz09-0528-fn-p-raw-keyboard-observation.json') | ConvertFrom-Json
+Assert-True ($coverage.capabilities.specialKeys.performanceKey -ceq 'ProductionAdmitted') 'Installed Fn+P coverage must advance.'
+Assert-True ($fnP.admission.fnPInstalledHandlerValidated -and -not $fnP.admission.m1BindingsAdmitted -and -not $fnP.admission.m2BindingsAdmitted) 'Fn+P validation must not admit M1/M2.'
+Assert-True ($fnP.installedHandlerValidation.physicalFnPOperatorConfirmed -and $fnP.installedHandlerValidation.fnPPerformance -ceq 'Silent') 'Installed physical Fn+P result must remain confirmed.'
+Assert-True ($fnP.installedHandlerValidation.subsequentChangeOperatorConfirmedManual -and -not $fnP.installedHandlerValidation.subsequentChangeAttributedToPlainP) 'Later Balanced was a confirmed manual user action.'
+Assert-True (-not $fnP.installedHandlerValidation.automaticRestorationPerformed) 'User changes must not be represented as automatic restoration.'
+Assert-True ($fnP.installedHandlerValidation.finalBaselinePassed -and $fnP.installedHandlerValidation.finalBaselineChecks -eq 38) 'Final installed baseline must remain recorded.'
+Assert-True ('Lifecycle behavior' -cin $fnP.pendingValidation) 'Fn+P lifecycle remains pending.'
