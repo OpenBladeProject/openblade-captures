@@ -274,7 +274,7 @@
     "No battery, USB-C, inadequate-adapter, or full-power adapter transition validation.",
     "No sleep/resume, cold boot, service restart, unexpected controller loss, or process crash recovery validation.",
     "No sustained-load, power-limit, thermal-limit, or performance improvement claim is established.",
-    "After vendor capture and Synapse closure, the user reported that physical cooling-pad controls do not seem to work. This remains unresolved; independent pad restoration is not confirmed. Laptop Performance/Automatic restoration remains independently confirmed. The cause of the pad behavior is not established."
+    "The user initially reported unresponsive physical cooling-pad controls after capture and Synapse closure. After Synapse was reopened, the user confirmed physical-button selection of High; the vendor UI displayed High with configured 2700 RPM. The user then confirmed continued fan operation after normal Profile > Exit. This records recovery of the reported symptom, not independent typed pad readback, restoration to a pre-capture pad state, measured RPM, or established causality. Laptop Performance/Automatic restoration remains independently confirmed."
   ],
   "privacy": {
     "rawCaptureCommitted": false,
@@ -286,11 +286,34 @@
     "usbDeviceAddressesRetained": false
   },
   "coolingPadFollowup": {
-    "source": "User report after vendor capture and Synapse closure",
-    "observation": "Physical cooling-pad controls do not seem to work.",
-    "physicalControlResponsivenessConfirmed": false,
+    "source": "User reports and vendor UI observation after the capture session",
+    "chronology": [
+      {
+        "sequence": 1,
+        "source": "User report after vendor capture and Synapse closure",
+        "observation": "Physical cooling-pad controls do not seem to work."
+      },
+      {
+        "sequence": 2,
+        "source": "User report after Synapse was reopened",
+        "observation": "The physical button selected High and the fan operated at High."
+      },
+      {
+        "sequence": 3,
+        "source": "Vendor UI observation",
+        "observation": "Synapse displayed High with a configured value of 2700 RPM; this is not an independent tachometer reading."
+      },
+      {
+        "sequence": 4,
+        "source": "Operator observation and user confirmation",
+        "observation": "Synapse was closed through Profile > Exit and its app processes were absent. The user confirmed the fan continued running at High after exit."
+      }
+    ],
+    "physicalControlResponsivenessUserConfirmed": true,
+    "fanOperationAfterVendorExitUserConfirmed": true,
     "restorationIndependentlyConfirmed": false,
-    "resolved": false,
+    "independentTypedPadReadbackPerformed": false,
+    "reportedSymptomRecovered": true,
     "causeEstablished": false
   },
   "decodedEvidence": "decoded/rz09-0528-pid-02c6-bios-2.02-hyperboost-semantic-evidence.json"
