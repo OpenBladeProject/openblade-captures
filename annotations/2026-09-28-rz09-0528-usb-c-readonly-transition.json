@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "publicationStatus": "UserApprovedSanitizedEvidence",
+  "evidenceProvenance": {
+    "controller": "OpenBlade exact-device read-only power-source query",
+    "role": "ReadOnlyObservation",
+    "sourceRevision": "888dca81dfe6ca756524e7e880e155b5e7fc2567",
+    "query": "query-rz09-0528-02c6-power-source (07/8C adapter power, 0D/82 thermal channels 1 and 2)"
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "bios": "2.02"
+  },
+  "operatorConfirmation": {
+    "padUsbAndPowerDisconnected": true,
+    "originalAdapterConnectedAtEntry": true,
+    "usbCChargerNominalWatts": 100,
+    "attendedSpokenPromptsConfirmed": true
+  },
+  "isolation": {
+    "openBladeServiceStopped": true,
+    "razerServicesStopped": true,
+    "synapseInactive": true,
+    "usbPcapInactive": true
+  },
+  "observation": {
+    "firmwareWritesPerformed": false,
+    "gpuWritesPerformed": false,
+    "totalSamples": 160,
+    "failedSamples": 0,
+    "maximumQueryMilliseconds": 554.9,
+    "sequence": "Barrel only, then USB-C added, then barrel removed, then barrel reconnected, then USB-C removed; no deliberate cable-free interval",
+    "phases": [
+      {
+        "Phase": "Baseline",
+        "SampleCount": 17,
+        "States": [
+          {
+            "FirmwarePower": "1111",
+            "Thermal1Hex": "01010000",
+            "Thermal2Hex": "01020000",
+            "WindowsAcOnline": true,
+            "FirstSeenSeconds": 1.0,
+            "SampleCount": 17
+          }
+        ]
+      },
+      {
+        "Phase": "ConnectUsbC",
+        "SampleCount": 32,
+        "States": [
+          {
+            "FirmwarePower": "1111",
+            "Thermal1Hex": "01010000",
+            "Thermal2Hex": "01020000",
+            "WindowsAcOnline": true,
+            "FirstSeenSeconds": 9.0,
+            "SampleCount": 32
+          }
+        ]
+      },
+      {
+        "Phase": "UnplugBarrel",
+        "SampleCount": 42,
+        "States": [
+          {
+            "FirmwarePower": "1111",
+            "Thermal1Hex": "01010000",
+            "Thermal2Hex": "01020000",
+            "WindowsAcOnline": true,
+            "FirstSeenSeconds": 25.0,
+            "SampleCount": 9
+          },
+          {
+            "FirmwarePower": "0711",
+            "Thermal1Hex": "01010000",
+            "Thermal2Hex": "01020000",
+            "WindowsAcOnline": true,
+            "FirstSeenSeconds": 29.0,
+            "SampleCount": 33
+          }
+        ]
+      },
+      {
+        "Phase": "ReconnectBarrel",
+        "SampleCount": 33,
+        "States": [
+          {
+            "FirmwarePower": "0711",
+            "Thermal1Hex": "01010000",
+            "Thermal2Hex": "01020000",
+            "WindowsAcOnline": true,
+            "FirstSeenSeconds": 45.0,
+            "SampleCount": 14
+          },
+          {
+            "FirmwarePower": "1111",
+            "Thermal1Hex": "01010000",
+            "Thermal2Hex": "01020000",
+            "WindowsAcOnline": true,
+            "FirstSeenSeconds": 52.0,
+            "SampleCount": 19
+          }
+        ]
+      },
+      {
+        "Phase": "UnplugUsbC",
+        "SampleCount": 32,
+        "States": [
+          {
+            "FirmwarePower": "1111",
+            "Thermal1Hex": "01010000",
+            "Thermal2Hex": "01020000",
+            "WindowsAcOnline": true,
+            "FirstSeenSeconds": 60.0,
+            "SampleCount": 32
+          }
+        ]
+      }
+    ]
+  },
+  "restoration": {
+    "finalFullAcProofPassed": true,
+    "finalThermalPairMatchedInitial": true,
+    "servicesReturnedToPriorState": true,
+    "temporaryFanOverrideClearedByServiceRestart": true,
+    "temporaryFanOverrideRestoredByFanOnlyIpc": true,
+    "originalIntentMatchedAfterRestore": true
+  },
+  "interpretation": {
+    "usbCOnlyFirmwarePower": "0711",
+    "barrelWithUsbCFirmwarePower": "1111",
+    "batteryStateObservedDuringSwaps": false,
+    "windowsAcOnlineThroughout": true,
+    "thermalPairUnchangedWithoutControllers": true,
+    "hyperBoostOnUsbCTested": false,
+    "chargerClassGeneralized": false,
+    "productionPadlessAdmitted": false,
+    "timingBasis": "FirstSeenSeconds is measured from the first initial full-AC proof sample; about 0.5 second sampling brackets but does not pinpoint physical plug events",
+    "limits": "Single attended read-only gapless swap with one 100 W charger from the Balanced pair; no HyperBoost, workload, cable-free interval, other charger class, sleep or crash-recovery claim."
+  },
+  "sanitization": {
+    "rawOutputsExcluded": true,
+    "localPathsExcluded": true,
+    "deviceInstancePathsExcluded": true,
+    "serialNumbersExcluded": true,
+    "processIdentityExcluded": true,
+    "profileContentsExcluded": true,
+    "chargerIdentityExcluded": true
+  }
+}
