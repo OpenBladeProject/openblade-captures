@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "evidenceProvenance": {
+    "controller": "OpenBlade.Capture commit 746586c9afee7cdaf9e26fa8933a18a17acb0714",
+    "role": "ExactDeviceInteractiveValidation",
+    "openBladeTypedApplyPerformed": true,
+    "openBladeReadbackConfirmed": true
+  },
+  "startedAtUtc": "2026-09-29T22:58:04.2249881Z",
+  "completedAtUtc": "2026-09-29T22:58:05.0242581Z",
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "bios": "2.02",
+    "biosIsProvenanceOnly": true
+  },
+  "trialArtifact": {
+    "kind": "TypedRoundTripResultJson",
+    "sha256": "93E0DD18FF5F1821A56D5C5194B46E591A23AC45A39DF9DDF9CD95EC876CB21E",
+    "byteLength": 970,
+    "rawArtifactCommitted": false,
+    "usbPcapUsed": false
+  },
+  "sanitizedEvidence": [
+    {
+      "kind": "ReviewedBuildAndFreshPreflight",
+      "summary": "The user confirmed the exact reviewed trial and current physical baseline. A persisted fresh metadata/process/service preflight found the exact pad control collection, zero AppEngine, zero USBPcapCMD and zero active Razer-named services. The sole retained handle is admitted by exact host/SKU and pad revision/geometry; strict controller checks repeat before each exchange.",
+      "captureDllSha256": "2531A568231EE47E4BCC86D4FF26A5A709DA052B30F589CC1A3925DFD582B322",
+      "sourceCommit": "746586c9afee7cdaf9e26fa8933a18a17acb0714",
+      "controlInterfaceNumber": "00",
+      "usagePageHex": "000C",
+      "usageHex": "0001",
+      "featureReportBytes": 91,
+      "appEngineCount": 0,
+      "usbPcapProcessCount": 0,
+      "activeRazerServiceCount": 0,
+      "openBladeServiceRunning": true,
+      "operatorPresentConfirmed": true,
+      "priorOperatorFanMode": "Auto",
+      "priorOperatorLighting": "Full-brightness static green",
+      "padDependentHyperBoostInactiveConfirmed": true
+    },
+    {
+      "kind": "SingleRawControlStateRoundTrip",
+      "summary": "One typed run completed the fixed five-exchange sequence: query0000, set0300 with exact echo, query0300, immediate set0000 with exact echo, final query0000. Shared-session validation accepted prefix zero, 91-byte Windows framing, 90-byte body, checksum, transaction/command/status correlation and exact two-byte payload shapes. No envelope or native completion trace was independently captured.",
+      "commandClassHex": "00",
+      "setterCommandIdHex": "04",
+      "queryCommandIdHex": "84",
+      "queryRequestPayloadHex": "0000",
+      "rawBaselineHex": "0000",
+      "rawCandidateHex": "0300",
+      "rawRestoredHex": "0000",
+      "expectedStatusHex": "02",
+      "exchangeCount": 5,
+      "modeSetterCount": 2,
+      "queryCount": 3,
+      "retryCount": 0,
+      "fallbackReportIdCount": 0,
+      "fanSetterCount": 0,
+      "lightingSetterCount": 0,
+      "featureReportPrefixHex": "00",
+      "applyAcknowledged": true,
+      "candidateConfirmed": true,
+      "restoreAcknowledged": true,
+      "restorationReadbackConfirmed": true,
+      "manualRecoveryRequired": false,
+      "exitCode": 0,
+      "failure": null,
+      "fanStateReadbackConfirmed": false,
+      "ownershipSemanticsConfirmed": false
+    },
+    {
+      "kind": "OperatorPhysicalOutcomeAndNoRestart",
+      "summary": "After the trial, the operator confirmed normal unchanged fan and full-brightness static-green lighting, with no flashing-red or sleep indication. Synapse and the two previously authorized stopped Razer services were not restarted; no additional service stop was performed.",
+      "operatorPhysicalOutcomeConfirmed": true,
+      "operatorPhysicalOutcome": "Normal and unchanged",
+      "vendorRestartDeclinedByUser": true,
+      "vendorServicesRestarted": false,
+      "synapseReopened": false,
+      "additionalVendorServiceStopCount": 0,
+      "vendorUiSettingsReadbackPerformed": false
+    }
+  ],
+  "productionAdmission": {
+    "rawControlStateRoundTripValidated": true,
+    "actualWindowsFeatureIoValidated": true,
+    "coolingPadModeWriteAdmitted": false,
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "independentPadOwnershipConfirmed": false,
+    "fanStateReadbackConfirmed": false,
+    "reason": "The exact-device typed mode-family round trip restores the saved raw baseline by readback. It does not assign laptop mode, fan state, RPM or ownership semantics, validate standalone Auto release, or admit production mutation."
+  },
+  "limitations": [
+    "This is a hashed typed result, not a PCAP. Raw response envelopes and native completion traces were not retained; exchange acceptance is reported by the reviewed shared session.",
+    "Only this immediate mode-only round trip was tested. It does not establish safe fan or lighting handback, sustained ownership, reconnect, shutdown/crash, sleep/resume or changing thermal-load behavior.",
+    "Raw0000 and0300 remain pad-specific candidates. Acknowledgement and restored raw state do not establish firmware ownership or meaningful fan-state readback.",
+    "The captured vendor startup includes other initialization, fan and lighting exchanges that were not replayed. Their combined effects are not attributed to this mode-only trial.",
+    "The prior failed standalone0D/10:000600 release is not superseded. No fan, lighting or demand setter was performed.",
+    "Vendor services and Synapse remain stopped by explicit user preference. No permission to restart them or stop additional services is inferred.",
+    "No serials, full device paths, process IDs or unrelated payloads are included. Operator physical confirmation is separate from raw protocol restoration; no vendor UI, fan-target or tachometer readback was obtained."
+  ]
+}

@@ -167,4 +167,36 @@ Assert-True ($query.commandIdHex -ceq '84' -and $query.responsePayloadHex -ceq '
     $queryAnnotation.productionAdmission.openBladeHandbackValidated -eq $false -and
     $outcome.vendorRestartDeclinedByUser -eq $true -and $outcome.vendorServicesRestarted -eq $false) `
     'Query success must preserve mutation gates and the explicit no-restart preference.'
+$roundTrip = Get-Content (Join-Path $repository 'annotations\2026-09-29-rz09-0528-cooling-pad-control-state-round-trip.json') -Raw | ConvertFrom-Json
+Assert-True ($roundTrip.schemaVersion -eq 1 -and
+    $roundTrip.evidenceProvenance.role -ceq 'ExactDeviceInteractiveValidation' -and
+    $roundTrip.evidenceProvenance.openBladeTypedApplyPerformed -eq $true -and
+    $roundTrip.evidenceProvenance.openBladeReadbackConfirmed -eq $true -and
+    $roundTrip.device.biosIsProvenanceOnly -eq $true -and
+    $roundTrip.trialArtifact.kind -ceq 'TypedRoundTripResultJson' -and
+    $roundTrip.trialArtifact.byteLength -eq 970 -and
+    $roundTrip.trialArtifact.sha256 -ceq '93E0DD18FF5F1821A56D5C5194B46E591A23AC45A39DF9DDF9CD95EC876CB21E' -and
+    $roundTrip.trialArtifact.usbPcapUsed -eq $false) `
+    'Mode trial must preserve actual typed-apply provenance without inventing a PCAP.'
+$mode = @($roundTrip.sanitizedEvidence | Where-Object kind -ceq 'SingleRawControlStateRoundTrip')[0]
+$physical = @($roundTrip.sanitizedEvidence | Where-Object kind -ceq 'OperatorPhysicalOutcomeAndNoRestart')[0]
+Assert-True ($mode.rawBaselineHex -ceq '0000' -and $mode.rawCandidateHex -ceq '0300' -and
+    $mode.rawRestoredHex -ceq '0000' -and $mode.exchangeCount -eq 5 -and
+    $mode.modeSetterCount -eq 2 -and $mode.queryCount -eq 3 -and $mode.retryCount -eq 0 -and
+    $mode.fanSetterCount -eq 0 -and $mode.lightingSetterCount -eq 0 -and
+    $mode.applyAcknowledged -eq $true -and $mode.candidateConfirmed -eq $true -and
+    $mode.restoreAcknowledged -eq $true -and $mode.restorationReadbackConfirmed -eq $true -and
+    $mode.manualRecoveryRequired -eq $false -and $mode.exitCode -eq 0 -and
+    $physical.operatorPhysicalOutcomeConfirmed -eq $true -and
+    $physical.operatorPhysicalOutcome -ceq 'Normal and unchanged' -and
+    $physical.vendorServicesRestarted -eq $false -and $physical.synapseReopened -eq $false) `
+    'Mode trial must retain all five exchanges, physical confirmation and no-restart preference.'
+Assert-True ($roundTrip.productionAdmission.rawControlStateRoundTripValidated -eq $true -and
+    $roundTrip.productionAdmission.coolingPadModeWriteAdmitted -eq $false -and
+    $roundTrip.productionAdmission.coolingPadFanWriteAdmitted -eq $false -and
+    $roundTrip.productionAdmission.coolingPadLightingWriteAdmitted -eq $false -and
+    $roundTrip.productionAdmission.openBladeHandbackValidated -eq $false -and
+    $roundTrip.productionAdmission.independentPadOwnershipConfirmed -eq $false -and
+    $roundTrip.productionAdmission.fanStateReadbackConfirmed -eq $false) `
+    'Raw restoration must not admit production writes, meaningful fan state or handback.'
 Write-Host 'RZ09-0528 cooling-pad vendor evidence tests passed.'
