@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "publicationStatus": "UserApprovedSanitizedEvidence",
+  "evidenceProvenance": {
+    "controller": "OpenBlade exact-device developer validation runner",
+    "role": "ReversibleValidation",
+    "sourceRevision": "99b02ff83b373fc91dc1c53642e27d3e75379156",
+    "planSha256": "FF5258CEDB14E09DFD9BF9C0F33030044E7F646F2088DAA3635240FABA37A029"
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "bios": "2.02"
+  },
+  "operatorConfirmation": {
+    "padUsbAndPowerDisconnected": true,
+    "originalAdapterConnected": true
+  },
+  "validation": {
+    "success": true,
+    "thermalPair": {
+      "Target": "HyperBoostFromPerformance",
+      "Baseline": {
+        "Thermal1Hex": "01010200",
+        "Thermal2Hex": "01020200"
+      },
+      "Candidate": {
+        "Thermal1Hex": "01010700",
+        "Thermal2Hex": "01020700"
+      },
+      "CandidateFanRpm": null,
+      "CandidateFanRpmSamples": [],
+      "Restoration": {
+        "Thermal1Hex": "01010200",
+        "Thermal2Hex": "01020200"
+      },
+      "ApplyAttempted": true,
+      "ApplyAcknowledged": true,
+      "CandidateConfirmed": true,
+      "RestoreAttempted": true,
+      "RestoreAcknowledged": true,
+      "Restored": true,
+      "IndeterminatePartialWrite": false,
+      "ManualRecoveryRequired": false,
+      "Failure": "None",
+      "Success": true
+    },
+    "observationMilliseconds": 10006.6822,
+    "candidateApplyMilliseconds": 1413.075,
+    "confirmedCandidateToRestorationReadbackMilliseconds": 11397.2283,
+    "samples": [
+      {
+        "ElapsedMilliseconds": 788.7603,
+        "CpuCelsius": 55.4,
+        "GpuCelsius": 60,
+        "GpuUtilizationPercent": 100,
+        "CpuSourceAgeMilliseconds": 127.8504,
+        "Fan1Rpm": 2500,
+        "Fan2Rpm": 2300
+      },
+      {
+        "ElapsedMilliseconds": 2805.8743,
+        "CpuCelsius": 56.5,
+        "GpuCelsius": 62,
+        "GpuUtilizationPercent": 100,
+        "CpuSourceAgeMilliseconds": 127.3423,
+        "Fan1Rpm": 2600,
+        "Fan2Rpm": 2400
+      },
+      {
+        "ElapsedMilliseconds": 4796.8897,
+        "CpuCelsius": 57.5,
+        "GpuCelsius": 63,
+        "GpuUtilizationPercent": 100,
+        "CpuSourceAgeMilliseconds": 116.0464,
+        "Fan1Rpm": 2700,
+        "Fan2Rpm": 2500
+      },
+      {
+        "ElapsedMilliseconds": 6826.1792,
+        "CpuCelsius": 58.1,
+        "GpuCelsius": 64,
+        "GpuUtilizationPercent": 100,
+        "CpuSourceAgeMilliseconds": 116.9774,
+        "Fan1Rpm": 2800,
+        "Fan2Rpm": 2600
+      },
+      {
+        "ElapsedMilliseconds": 8051.4002,
+        "CpuCelsius": 59.5,
+        "GpuCelsius": 65,
+        "GpuUtilizationPercent": 100,
+        "CpuSourceAgeMilliseconds": 120.7795,
+        "Fan1Rpm": null,
+        "Fan2Rpm": null
+      }
+    ],
+    "hardwareDisposed": true,
+    "externalTelemetryQuiesced": true,
+    "snapshotQuiesced": true
+  },
+  "restoration": {
+    "ValidationExitCode": 0,
+    "BenchmarkExitConfirmed": true,
+    "IndependentPerformanceStateConfirmed": true,
+    "OriginalIntentRestored": true,
+    "OriginalRestoreExitCode": 0,
+    "RestorationPending": false,
+    "Failure": null,
+    "Errors": []
+  },
+  "interpretation": {
+    "cpuSource": "HWiNFO named CPU Tctl/Tdie with newly consumed row peaks",
+    "gpuSource": "NVML temperature and utilization",
+    "fanSource": "Typed firmware fan readbacks; final external-only sample has no fresh fan measurement",
+    "timing": "Scheduled observation duration differs from candidate-apply latency and confirmed-candidate-to-restoration-readback interval. Readback intervals do not establish exact physical residency.",
+    "productionPadlessAdmitted": false,
+    "sustainedThermalCapacityEstablished": false,
+    "stableModePerformanceComparison": false,
+    "limits": "Brief GPU-heavy workload only; no sustained thermal, CPU-heavy, adapter-transition, low-power or crash-recovery claim. No stable-mode benchmark comparison."
+  },
+  "sanitization": {
+    "rawOutputsExcluded": true,
+    "localPathsExcluded": true,
+    "deviceInstancePathsExcluded": true,
+    "serialNumbersExcluded": true,
+    "processIdentityExcluded": true,
+    "profileContentsExcluded": true
+  }
+}
