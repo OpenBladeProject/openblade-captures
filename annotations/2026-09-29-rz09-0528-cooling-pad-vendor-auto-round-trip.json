@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 2,
+  "evidenceProvenance": {
+    "controller": "Razer Synapse AppEngine 4.0.821.53 with OpenBlade capture tooling at 4f2bf1565c7557439760db7e45104bb1e8b62bfd",
+    "role": "OracleCapture",
+    "openBladeTypedApplyPerformed": false,
+    "openBladeReadbackConfirmed": false
+  },
+  "capturedAtUtc": "2026-09-29T20:53:59.7951086Z",
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "bios": "2.02",
+    "ec": null,
+    "mcu": null
+  },
+  "capture": {
+    "sha256": "05237B8380FA1D1D81FBD2305CFB1A8BFE15E5237BD03851624DCE6A7158BDF6",
+    "byteLength": 5783,
+    "rawCaptureCommitted": false,
+    "captureMode": "DeviceAddress",
+    "selectedDeviceCount": 0,
+    "stopMode": "Graceful",
+    "forcedShutdownDataLossDisclosed": false,
+    "decodable": true
+  },
+  "action": {
+    "kind": "SettingChange",
+    "subsystem": "Cooling-pad vendor fan control",
+    "name": "Fixed Medium 2200 to vendor Auto and original-state restoration",
+    "value": "One operator-selected Auto transition followed by restoration to Fixed Medium 2200; lighting remained full-brightness static green",
+    "operatorConfirmed": true
+  },
+  "validation": {
+    "priorStateSaved": true,
+    "applyResult": "Confirmed through the vendor controller: one Auto request was acknowledged with a matching transaction, status-02 semantic echo and valid checksum; the operator reported that the fan ramped down with no other pad reaction.",
+    "readbackResult": "Vendor acknowledgement and physical ramp-down were confirmed separately. No active-mode, target, ownership or tachometer getter was observed; independent device-state readback remains unavailable.",
+    "restorationResult": "Restored successfully through the vendor UI to the saved Fixed Medium 2200 setting; one matching acknowledged request was captured and the operator confirmed normal fan response and unchanged full-brightness static-green lighting.",
+    "restorationReadbackResult": "Operator UI and physical restoration were confirmed. The semantic echo is command acceptance only; independent target, RPM and controller-ownership readback were not established."
+  },
+  "sanitizedEvidence": [
+    {
+      "kind": "ExactHostAndPadInventory",
+      "summary": "A metadata-only inventory confirmed RZ09-05289EN4 BIOS 2.02, exact PID 0F43 revision 0200, MI_00 control geometry and separate MI_01 input collections before capture. Injected device descriptors in the selected capture also identify VID 1532, PID 0F43 and revision 0200.",
+      "sku": "RZ09-05289EN4",
+      "revisionHex": "0200",
+      "controlInterfaceNumber": 0,
+      "controlUsagePageHex": "000C",
+      "controlUsageHex": "0001",
+      "featureReportBytes": 91,
+      "hidCollectionCount": 6,
+      "rawUsbReportBodyBytes": 90,
+      "rawUsbFeatureReportSelectorHex": "0300",
+      "rawUsbReportId": 0,
+      "userModeFeatureReportIdValidated": false
+    },
+    {
+      "kind": "OperatorBaseline",
+      "summary": "The operator saved the vendor UI baseline as Fixed, Medium, 2200 RPM, full brightness and static green before the bounded transition. This is requested/UI state, not independent target or tachometer readback.",
+      "fanMode": "Fixed",
+      "preset": "Medium",
+      "requestedTargetRpm": 2200,
+      "brightnessPercent": 100,
+      "lightingEffect": "Static",
+      "operatorColor": "Green",
+      "independentStateReadbackConfirmed": false
+    },
+    {
+      "kind": "VendorAutoPair",
+      "summary": "The vendor Auto request and response match class, command, transaction, payload length, semantic payload and checksum. The operator independently reported fan ramp-down and no other pad reaction.",
+      "commandClassHex": "0D",
+      "commandIdHex": "10",
+      "semanticPayloadHex": "000600",
+      "transactionHex": "1B",
+      "requestStatusHex": "00",
+      "responseStatusHex": "02",
+      "requestFrame": 25,
+      "responseFrame": 28,
+      "requestAtUtc": "2026-09-29T20:54:47.322408Z",
+      "responseAtUtc": "2026-09-29T20:54:47.331582Z",
+      "requestCount": 1,
+      "acknowledgementCount": 1,
+      "transactionMatched": true,
+      "semanticEchoMatched": true,
+      "checksumsValid": true,
+      "operatorFanRampDownConfirmed": true,
+      "independentActiveModeReadbackConfirmed": false
+    },
+    {
+      "kind": "VendorFixedMediumRestorationPair",
+      "summary": "The vendor Fixed Medium 2200 restoration request and response match transaction, semantic payload and checksum. Medium uses payload 01012C; the older 0581 High-2200 oracle uses 01022C and is not substituted here.",
+      "commandClassHex": "0D",
+      "commandIdHex": "10",
+      "semanticPayloadHex": "01012C",
+      "transactionHex": "1C",
+      "requestStatusHex": "00",
+      "responseStatusHex": "02",
+      "requestFrame": 47,
+      "responseFrame": 50,
+      "requestAtUtc": "2026-09-29T20:55:32.192158Z",
+      "responseAtUtc": "2026-09-29T20:55:32.201939Z",
+      "requestCount": 1,
+      "acknowledgementCount": 1,
+      "transactionMatched": true,
+      "semanticEchoMatched": true,
+      "checksumsValid": true,
+      "operatorOriginalStateRestorationConfirmed": true,
+      "independentTargetReadbackConfirmed": false,
+      "tachometerReadbackConfirmed": false
+    },
+    {
+      "kind": "BoundedAutoInterval",
+      "summary": "The observed interval from the Auto request to the Medium restoration request lasted 44.86975 seconds. No 0D/01 host-demand writes or 0D/81, 0D/88 or 0D/90 fan queries appear anywhere in the selected capture. Vendor controllers and lighting frames remained active.",
+      "intervalSeconds": 44.86975,
+      "completeRazerBodyCount": 29,
+      "allCompleteBodyChecksumsValid": true,
+      "hostDemandWriteCount": 0,
+      "fanQueryCount": 0,
+      "autonomousPadOwnershipConfirmed": false,
+      "vendorControllerRelinquishmentObserved": false
+    },
+    {
+      "kind": "StaticGreenLightingContext",
+      "summary": "Twenty-five 0F/03 lighting requests contain a 59-byte payload with logical slots 0 through 17 uniformly green, approximately one request every five seconds. The operator confirmed unchanged full-brightness static-green presentation; no brightness query or setter was captured.",
+      "commandClassHex": "0F",
+      "commandIdHex": "03",
+      "payloadBytes": 59,
+      "logicalSlotCount": 18,
+      "uniformRgbHex": "00FF00",
+      "frameRequestCount": 25,
+      "minimumIntervalSeconds": 4.990308,
+      "maximumIntervalSeconds": 5.009864,
+      "meanIntervalSeconds": 5.0002247083,
+      "brightnessQueryCount": 0,
+      "brightnessSetterCount": 0,
+      "firmwareNativeEffectConfirmed": false,
+      "physicalOriginAndDirectionConfirmed": false
+    },
+    {
+      "kind": "CaptureAndServiceRestoration",
+      "summary": "The capture wrapper stopped the previously running OpenBlade service before capture, used the selected pad only, stopped USBPcap gracefully through its stop sentinel, and restarted OpenBlade afterward with no reported errors. No OpenBlade pad write was issued.",
+      "openBladeServiceWasRunning": true,
+      "openBladeServiceStoppedDuringCapture": true,
+      "openBladeServiceRestarted": true,
+      "captureErrorCount": 0,
+      "forcedTerminationUsed": false,
+      "openBladePadWriteCount": 0
+    }
+  ],
+  "limitations": [
+    "This is a bounded vendor-controlled transition on RZ09-05289EN4 BIOS 2.02 with the exact revision-0200 pad. It does not admit any laptop command or reuse another model's validation.",
+    "Status-02 semantic echo proves acceptance only. Operator physical observation does not establish exact RPM, active mode, target readback or controller ownership.",
+    "The 44.86975-second Auto interval has no dynamic-demand writes but retains vendor processes and static-green lighting traffic. It does not establish autonomous Auto, retained-driver state, controller handback, or behavior under changing temperature.",
+    "USB-wire SET_REPORT and GET_REPORT use selector 0300 on interface zero with a 90-byte body. This does not establish Windows user-mode feature-report framing; the historical report-ID-05 path must not be inferred from this capture.",
+    "No 0D/81 getter was queried. Its previously observed byte remains opaque; no target, active-mode, ownership or tachometer meaning is assigned.",
+    "The operator's post-capture selection of Auto for quietness is outside the raw capture. Captured restoration remains Fixed Medium 2200; the later Auto preference is not a second captured transition.",
+    "The negative 0581 standalone 000600 handback result remains applicable to safety planning. This successful vendor transition does not validate a standalone OpenBlade release.",
+    "Raw PCAP, descriptor payloads, capture-plane inventory and operator marker logs remain private. The committed annotation contains bounded pad semantics only."
+  ],
+  "productionAdmission": {
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "vendorAutoRoundTripObserved": true,
+    "fixedMedium2200VendorRestoreObserved": true,
+    "openBladeHandbackValidated": false,
+    "activeModeReadbackConfirmed": false,
+    "tachometerReadbackConfirmed": false,
+    "reason": "The vendor transition and physical restoration were observed, but independent state readback and safe OpenBlade ownership/handback remain unresolved."
+  },
+  "notes": [
+    "The operator selected Auto after the capture completed to reduce noise. That later choice is preserved and no further device setting was changed by OpenBlade tooling.",
+    "The two fan pairs fall within their respective prompt-to-confirmation marker intervals. Prompt timestamps bound operator actions; they are not exact click timestamps.",
+    "The service restart was confirmed independently after graceful capture completion."
+  ]
+}
