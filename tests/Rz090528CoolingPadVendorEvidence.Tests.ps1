@@ -92,4 +92,25 @@ Assert-True ($annotation.productionAdmission.coolingPadFanWriteAdmitted -eq $fal
     $annotation.productionAdmission.openBladeHandbackValidated -eq $false -and
     $annotation.productionAdmission.independentPadOwnershipConfirmed -eq $false) `
     'Exit/reopen evidence must keep mutation and ownership gates closed.'
+$annotationPath = Join-Path $repository 'annotations\2026-09-29-rz09-0528-cooling-pad-vendor-fixed-exit-reopen.json'
+& (Join-Path $repository 'tools\Test-CaptureEvidence.ps1') -AnnotationPath $annotationPath -SchemaOnly | Out-Null
+$annotation = Get-Content -LiteralPath $annotationPath -Raw | ConvertFrom-Json
+$fixed = Get-Evidence 'VendorFixedPairsAndAutoRestoration'
+Assert-True ($annotation.capture.byteLength -eq 40565 -and
+    $annotation.capture.sha256 -ceq '0A025B0B247D4397770C278C79A19AED26E0ECC838FD7F9F4327106B523B9932' -and
+    $fixed.mediumPairCount -eq 8 -and $fixed.postReopenMediumPairCount -eq 7 -and
+    $fixed.mediumPayloadHex -ceq '01012C' -and $fixed.autoPayloadHex -ceq '000600' -and
+    $fixed.independentFanStateReadbackConfirmed -eq $false) `
+    'Fixed lifecycle evidence must retain vendor repetitions and unavailable independent readback.'
+$closed = Get-Evidence 'ClosedApplicationAndLightingInterval'
+$transport = Get-Evidence 'TransportAndCleanup'
+Assert-True ($closed.zeroAppEngineSnapshotCount -eq 2 -and
+    $closed.completeReportSilenceSeconds -eq 49.650182 -and
+    $closed.autonomousPadOperationConfirmed -eq $false -and
+    $transport.completeRazerBodyCount -eq 216 -and $transport.captureErrorCount -eq 0 -and
+    $annotation.productionAdmission.coolingPadFanWriteAdmitted -eq $false -and
+    $annotation.productionAdmission.coolingPadLightingWriteAdmitted -eq $false -and
+    $annotation.productionAdmission.openBladeHandbackValidated -eq $false -and
+    $annotation.productionAdmission.userModeFeatureReportIdValidated -eq $false) `
+    'Fixed lifecycle success must not admit framing, independent ownership or pad writes.'
 Write-Host 'RZ09-0528 cooling-pad vendor evidence tests passed.'
