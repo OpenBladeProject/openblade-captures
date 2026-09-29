@@ -149,4 +149,22 @@ Assert-True ($featureBits -eq 720 -and $reportIds -eq 0 -and
     $annotation.productionAdmission.actualWindowsFeatureIoValidated -eq $false -and
     $annotation.productionAdmission.coolingPadFanWriteAdmitted -eq $false) `
     'Descriptor-defined framing must remain separate from live I/O and mutation admission.'
+$queryAnnotation = Get-Content (Join-Path $repository 'annotations\2026-09-29-rz09-0528-cooling-pad-control-state-query.json') -Raw | ConvertFrom-Json
+Assert-True ($queryAnnotation.schemaVersion -eq 1 -and
+    $queryAnnotation.evidenceProvenance.role -ceq 'ReadOnlyQueryCapture' -and
+    $queryAnnotation.evidenceProvenance.openBladeTypedApplyPerformed -eq $false -and
+    $queryAnnotation.queryArtifact.kind -ceq 'TypedQueryResultJson' -and
+    $queryAnnotation.queryArtifact.byteLength -eq 757 -and
+    $queryAnnotation.queryArtifact.sha256 -ceq '47627BAA16CF3C0346839AAA9330AD3340943BF2AA70900841E066D61B1CD704' -and
+    $queryAnnotation.queryArtifact.usbPcapUsed -eq $false) `
+    'Typed query provenance must remain distinct from an invented PCAP.'
+$query = @($queryAnnotation.sanitizedEvidence | Where-Object kind -ceq 'SingleTypedRawControlStateQuery')[0]
+$outcome = @($queryAnnotation.sanitizedEvidence | Where-Object kind -ceq 'UserAuthorizedControllerStopAndOutcome')[0]
+Assert-True ($query.commandIdHex -ceq '84' -and $query.responsePayloadHex -ceq '0000' -and
+    $query.requestCount -eq 1 -and $query.retryCount -eq 0 -and $query.modeSetterCount -eq 0 -and
+    $query.actualWindowsFeatureIoValidated -eq $true -and
+    $queryAnnotation.productionAdmission.coolingPadFanWriteAdmitted -eq $false -and
+    $queryAnnotation.productionAdmission.openBladeHandbackValidated -eq $false -and
+    $outcome.vendorRestartDeclinedByUser -eq $true -and $outcome.vendorServicesRestarted -eq $false) `
+    'Query success must preserve mutation gates and the explicit no-restart preference.'
 Write-Host 'RZ09-0528 cooling-pad vendor evidence tests passed.'

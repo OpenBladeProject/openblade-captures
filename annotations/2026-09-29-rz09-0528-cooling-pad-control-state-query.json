@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "evidenceProvenance": {
+    "controller": "OpenBlade.Capture commit 37011fd6aa397cd7718f28ad7a6a1c1f86199f68",
+    "role": "ReadOnlyQueryCapture",
+    "openBladeTypedApplyPerformed": false,
+    "openBladeReadbackConfirmed": true
+  },
+  "queriedAtUtc": "2026-09-29T22:06:50.1116471Z",
+  "completedAtUtc": "2026-09-29T22:06:50.7404182Z",
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "bios": "2.02",
+    "biosIsProvenanceOnly": true
+  },
+  "queryArtifact": {
+    "kind": "TypedQueryResultJson",
+    "sha256": "47627BAA16CF3C0346839AAA9330AD3340943BF2AA70900841E066D61B1CD704",
+    "byteLength": 757,
+    "rawArtifactCommitted": false,
+    "usbPcapUsed": false
+  },
+  "sanitizedEvidence": [
+    {
+      "kind": "ReviewedBuildAndFreshPreflight",
+      "summary": "The reviewed query build was hash-checked immediately before its single execution. Fresh metadata found the exact pad control collection, and fresh process/service checks found no AppEngine, USBPcapCMD or active Razer-named service. BIOS was recorded without gating.",
+      "captureDllSha256": "4594673ACC6D647AAC3CDCEC85319B3D0C7776A917D9ECF96278D526ED8E01F7",
+      "sourceCommit": "37011fd6aa397cd7718f28ad7a6a1c1f86199f68",
+      "controlInterfaceNumber": "00",
+      "usagePageHex": "000C",
+      "usageHex": "0001",
+      "featureReportBytes": 91,
+      "appEngineCount": 0,
+      "usbPcapProcessCount": 0,
+      "activeRazerServiceCount": 0,
+      "openBladeServiceRunning": true
+    },
+    {
+      "kind": "SingleTypedRawControlStateQuery",
+      "summary": "Exactly one developer-only 00/84 query with payload0000 returned raw0000 and exit code zero. The shared Windows session accepted the zero-prefix91-byte feature exchange with validated90-byte body, checksum, transaction/command/status correlation and captured two-byte payload shape. No envelope was independently sniffed during this typed trial.",
+      "commandClassHex": "00",
+      "commandIdHex": "84",
+      "requestPayloadHex": "0000",
+      "responsePayloadHex": "0000",
+      "expectedStatusHex": "02",
+      "requestCount": 1,
+      "retryCount": 0,
+      "fallbackReportIdCount": 0,
+      "modeSetterCount": 0,
+      "fanSetterCount": 0,
+      "lightingSetterCount": 0,
+      "featureReportPrefixHex": "00",
+      "featureBufferBytes": 91,
+      "razerBodyBytes": 90,
+      "transportSuccess": true,
+      "failure": "None",
+      "protocolValidationFailure": "None",
+      "actualWindowsFeatureIoValidated": true,
+      "fanStateReadbackConfirmed": false,
+      "ownershipSemanticsConfirmed": false
+    },
+    {
+      "kind": "UserAuthorizedControllerStopAndOutcome",
+      "summary": "The operator exited Synapse. At the user's explicit request, a fixed elevated helper stopped only Razer Elevation Service and Razer Game Manager Service 3, without forced dependent-service stops. After the query, the operator answered normal to unchanged fan/static-green lighting and no red/sleep indication. The user explicitly requested that no Razer service or Synapse be restarted, so both remain stopped.",
+      "stoppedServiceNames": ["Razer Elevation Service", "Razer Game Manager Service 3"],
+      "vendorServiceStopExplicitlyAuthorized": true,
+      "vendorRestartDeclinedByUser": true,
+      "vendorServicesRestarted": false,
+      "synapseReopened": false,
+      "operatorPhysicalOutcome": "normal",
+      "operatorPhysicalOutcomeConfirmed": true,
+      "vendorUiSettingsReadbackPerformed": false,
+      "deviceSettingMutationPerformed": false
+    }
+  ],
+  "productionAdmission": {
+    "rawControlStateQueryTransportValidated": true,
+    "actualWindowsFeatureIoValidated": true,
+    "coolingPadModeWriteAdmitted": false,
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "fanStateReadbackConfirmed": false,
+    "reason": "The captured raw query succeeds with Windows prefix zero. Raw0000 is not assigned laptop mode, fan state, RPM or ownership meaning; setters and safe handback remain unvalidated."
+  },
+  "limitations": [
+    "This is a typed query-result artifact, not a PCAP. Its hash and length identify the private JSON result; no USBPcap capture ran concurrently.",
+    "Protocol acceptance is reported by the reviewed shared session rather than independently captured raw response bytes. No serial-bearing or unrelated payload was queried or published.",
+    "Fresh preflight counts were observed in host tool checks and enforced by the query's guard. No separate persisted post-stop preflight snapshot was retained; the original before.json records the earlier running-service state.",
+    "The saved preferred device state came from prior operator-confirmed Auto/full-brightness/static-green observations. The post-query reply confirms normal unchanged physical behavior, not a vendor UI or tachometer readback.",
+    "Vendor services remain stopped at the user's explicit request; this is not an uncompleted restoration or an inferred permission to stop other services.",
+    "Controller detection concerns known processes and services. It does not prove independent firmware ownership, a safe release contract or fan behavior under changing thermal load."
+  ]
+}
