@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "evidenceProvenance": {
+    "controller": "Windows USB/HID enumeration and Razer Synapse; capture wrapper at 4f2bf1565c7557439760db7e45104bb1e8b62bfd",
+    "role": "OracleCapture",
+    "openBladeTypedApplyPerformed": false,
+    "openBladeReadbackConfirmed": false
+  },
+  "capturedAtUtc": "2026-09-29T21:37:34.5600941Z",
+  "device": { "modelNumber": "RZ09-0528", "vendorIdHex": "1532", "productIdHex": "0F43", "bios": "2.02", "ec": null, "mcu": null },
+  "capture": {
+    "sha256": "E97507312C2408C97D1102CD06E38200A1227A3D89FB6C9BB99D5B1EADC32467",
+    "byteLength": 178484,
+    "rawCaptureCommitted": false,
+    "captureMode": "AllDevices",
+    "selectedDeviceCount": 0,
+    "stopMode": "Graceful",
+    "forcedShutdownDataLossDisclosed": false,
+    "decodable": true
+  },
+  "action": {
+    "kind": "Observation",
+    "subsystem": "Cooling-pad HID descriptor discovery",
+    "name": "Attended USB-only reconnect with 12 V retained",
+    "value": "Operator disconnected USB for about five seconds and reconnected the same port, with HyperBoost inactive and preferred Auto/full-brightness/static-green baseline saved",
+    "operatorConfirmed": true
+  },
+  "validation": {
+    "priorStateSaved": true,
+    "applyResult": "The operator confirmed inactive pad-dependent HyperBoost and normal Auto/static-green baseline before capture. No OpenBlade pad-control report was sent.",
+    "readbackResult": "Actual USB enumeration binds the pad identity to a successful MI_00 report-descriptor exchange, distinct from injected configuration descriptor data.",
+    "restorationResult": "Operator answered done, nothing abnormal to the USB-only reconnect and preferred Auto/full-brightness/static-green restoration prompt.",
+    "restorationReadbackResult": "Vendor startup Auto/brightness traffic was captured. Capture stopped gracefully, without errors, and OpenBlade restarted."
+  },
+  "sanitizedEvidence": [
+    {
+      "kind": "ExactDescriptorBinding",
+      "summary": "Post-reconnect device descriptor frame226 identifies VID1532/PID0F43/revision0200. The following actual report-descriptor exchange shares the same USB device and interface zero. Raw root traffic and unrelated descriptors remain private.",
+      "deviceDescriptorFrame": 226,
+      "revisionHex": "0200",
+      "interfaceNumber": 0,
+      "sameDeviceIdentityBound": true,
+      "descriptorDiscoveryOnly": true
+    },
+    {
+      "kind": "ActualHidReportDescriptor",
+      "summary": "The HID GET_DESCRIPTOR_FROM_INTERFACE request asks for report descriptor type22 on interface zero with an 86-byte maximum. Its correlated successful response returns exactly22bytes, the complete descriptor. This is an actual response rather than an injected descriptor-length advertisement.",
+      "requestFrame": 247,
+      "responseFrame": 248,
+      "requestAtUtc": "2026-09-29T21:38:21.837609Z",
+      "responseAtUtc": "2026-09-29T21:38:21.840500Z",
+      "setupPayloadHex": "8106002200005600",
+      "requestedMaximumBytes": 86,
+      "responseByteLength": 22,
+      "responseHex": "050C0901A1010600FF0902150025017508955AB101C0",
+      "descriptorSha256": "C86119101B32403BB8C8EFBDEB67654B348C7C28E298B711D9FE1DB8C129DAFF",
+      "requestResponseCorrelationConfirmed": true,
+      "usbStatusSuccess": true,
+      "injectedDescriptor": false
+    },
+    {
+      "kind": "DescriptorFramingConclusion",
+      "summary": "The full descriptor declares Consumer/ConsumerControl application collection, vendor usageFF00:02, one constant/array/absolute Feature item with ReportSize8 and ReportCount90, then EndCollection. It has no ReportID item. Thus it declares an unnumbered90-byte feature body. Windows HID APIs require prefix zero for an unnumbered report and the independently inventoried FeatureReportByteLength is91. This establishes the buffer choice, not successful OpenBlade feature I/O.",
+      "usagePageHex": "000C",
+      "usageHex": "0001",
+      "featureReportSizeBits": 8,
+      "featureReportCount": 90,
+      "featureReportBits": 720,
+      "featureFlagsHex": "01",
+      "featureIsConstant": true,
+      "reportIdItemCount": 0,
+      "descriptorBodyBytes": 90,
+      "windowsFeatureBufferBytes": 91,
+      "windowsRequiredPrefixHex": "00",
+      "historicalPrefix05Declared": false,
+      "actualWindowsFeatureIoValidated": false
+    },
+    {
+      "kind": "VendorStartupContext",
+      "summary": "Post-descriptor startup contains a00/84 query returning0000, acknowledged00/04:0300, then00/84 returning0300. Two acknowledged Auto000600 pairs and two full-brightness query/set pairs occur. These are vendor observations with no independent fan or ownership readback.",
+      "initialRawModeResponseHex": "0000",
+      "laterRawModeResponseHex": "0300",
+      "vendorAutoPairCount": 2,
+      "brightnessQueryPairCount": 2,
+      "brightnessQueryResponseHex": "0105FF",
+      "brightnessSetterPairCount": 2,
+      "brightnessSetterPayloadHex": "0100FF",
+      "completePostDescriptorBodyCount": 161,
+      "allPostDescriptorBodyChecksumsValid": true,
+      "hostDemandWriteCount": 0,
+      "fanStateQueryCount": 0
+    }
+  ],
+  "limitations": [
+    "AllDevices was used only for bounded descriptor discovery because enumeration and reconnect can change addresses. Unrelated root traffic, serial-bearing startup replies, local paths and instance identifiers are excluded from this annotation.",
+    "Descriptor-declared zero prefix and91-byte Windows capability geometry do not establish actual user-mode I/O success, safe OpenBlade handback or autonomous firmware ownership.",
+    "The prior in-memory parser returned REPORT_DOES_NOT_EXIST for both candidates. The actual constant Feature descriptor resolves buffer geometry despite that parser result; no fallback-ID experiment was performed.",
+    "Raw mode-family values are accessory candidates. Laptop Driver/Normal semantics and fan/RPM interpretation remain unassigned."
+  ],
+  "productionAdmission": {
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "userModeFramingChoiceEstablished": true,
+    "actualWindowsFeatureIoValidated": false,
+    "reason": "Actual descriptor and Windows metadata establish prefix zero and91-byte buffer for a bounded future query; accessory mutation and actual feature-I/O validation remain closed."
+  },
+  "notes": [
+    "Microsoft HidD_GetFeature/HidD_SetFeature documentation requires a zero first byte when a collection does not include report IDs and uses FeatureReportByteLength as the buffer length.",
+    "Sources: https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/hidsdi/nf-hidsdi-hidd_getfeature and https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/hidsdi/nf-hidsdi-hidd_setfeature .",
+    "No vendor process was killed, vendor service stopped, device reset issued or driver restarted. The operator performed the USB-only reconnect."
+  ]
+}

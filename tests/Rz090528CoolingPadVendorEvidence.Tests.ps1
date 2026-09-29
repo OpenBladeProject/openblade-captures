@@ -113,4 +113,40 @@ Assert-True ($closed.zeroAppEngineSnapshotCount -eq 2 -and
     $annotation.productionAdmission.openBladeHandbackValidated -eq $false -and
     $annotation.productionAdmission.userModeFeatureReportIdValidated -eq $false) `
     'Fixed lifecycle success must not admit framing, independent ownership or pad writes.'
+$annotationPath = Join-Path $repository 'annotations\2026-09-29-rz09-0528-cooling-pad-report-descriptor.json'
+& (Join-Path $repository 'tools\Test-CaptureEvidence.ps1') -AnnotationPath $annotationPath -SchemaOnly | Out-Null
+$annotation = Get-Content -LiteralPath $annotationPath -Raw | ConvertFrom-Json
+$descriptor = Get-Evidence 'ActualHidReportDescriptor'
+$bytes = [byte[]]@(for ($offset = 0; $offset -lt $descriptor.responseHex.Length; $offset += 2) {
+    [Convert]::ToByte($descriptor.responseHex.Substring($offset, 2), 16)
+})
+$hash = [Security.Cryptography.SHA256]::Create()
+try { $computed = [BitConverter]::ToString($hash.ComputeHash($bytes)).Replace('-', '') }
+finally { $hash.Dispose() }
+Assert-True ($computed -ceq $descriptor.descriptorSha256 -and $bytes.Length -eq 22 -and
+    $descriptor.requestFrame -eq 247 -and $descriptor.responseFrame -eq 248 -and
+    $descriptor.usbStatusSuccess -eq $true -and $descriptor.injectedDescriptor -eq $false) `
+    'Actual report-descriptor provenance must not become an injected length advertisement.'
+$size = 0; $count = 0; $featureBits = 0; $reportIds = 0
+for ($offset = 0; $offset -lt $bytes.Length;) {
+    $header = $bytes[$offset++]; $length = $header -band 3
+    if ($length -eq 3) { $length = 4 }
+    Assert-True ($header -ne 0xFE -and $offset + $length -le $bytes.Length) 'Descriptor item is incomplete.'
+    $type = ($header -shr 2) -band 3; $tag = $header -shr 4; $value = 0
+    for ($index = 0; $index -lt $length; $index++) { $value = $value -bor ($bytes[$offset + $index] -shl (8 * $index)) }
+    if ($type -eq 1 -and $tag -eq 7) { $size = $value }
+    if ($type -eq 1 -and $tag -eq 9) { $count = $value }
+    if ($type -eq 1 -and $tag -eq 8) { $reportIds++ }
+    Assert-True (-not ($type -eq 1 -and $tag -in 10, 11)) 'This fixture needs explicit Push/Pop handling.'
+    if ($type -eq 0 -and $tag -eq 11) {
+        Assert-True ($value -eq 1) 'The captured Feature item must remain constant.'
+        $featureBits += $size * $count
+    }
+    $offset += $length
+}
+Assert-True ($featureBits -eq 720 -and $reportIds -eq 0 -and
+    $annotation.productionAdmission.userModeFramingChoiceEstablished -eq $true -and
+    $annotation.productionAdmission.actualWindowsFeatureIoValidated -eq $false -and
+    $annotation.productionAdmission.coolingPadFanWriteAdmitted -eq $false) `
+    'Descriptor-defined framing must remain separate from live I/O and mutation admission.'
 Write-Host 'RZ09-0528 cooling-pad vendor evidence tests passed.'
