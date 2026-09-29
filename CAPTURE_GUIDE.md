@@ -108,6 +108,14 @@ record its USB interfaces and HID report geometry separately:
   -OutputPath .\raw\cooling-pad-interface-inventory.json
 ```
 
+Add `-InspectFeatureReportIds` for an optional in-memory descriptor-parser check
+of candidate IDs `00` and `05` on the exact revision-0200 MI_00 control
+collection. It uses `HidP_InitializeReportForID` and never sends the initialized
+buffer to the device. Raw parser statuses and recognized prefixes are recorded;
+descriptor recognition does not validate actual user-mode feature I/O. Run in
+a fresh PowerShell process. If both candidates fail, obtain the actual report
+descriptor instead of trying guessed device queries.
+
 This inventory opens HID collections with zero desired access and calls only
 descriptor and preparsed-data APIs. It does not issue feature-report queries or
 writes, and it never serializes a device-interface path, full instance ID,
