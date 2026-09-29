@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "CoolingPadExploratoryTypedAttemptResults",
+  "evidenceProvenance": {
+    "controller": "OpenBlade.Capture commit 45a4aa6ed39de77258738a88d5d5cd62f09beaa3",
+    "role": "ExploratoryTypedResult",
+    "sourceCommit": "45a4aa6ed39de77258738a88d5d5cd62f09beaa3",
+    "captureDllSha256": "6120670EA42D418CEBF27BB472AFE996EB88CE7B3D7C08A6D05C3ED9D232585A",
+    "usbPcapUsed": false,
+    "independentNativeReportTraceRetained": false
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureBufferBytes": 91,
+    "featureReportPrefixHex": "00",
+    "biosIsProvenanceOnly": true
+  },
+  "plannedSequence": [
+    "00/84:0000",
+    "00/04:0300",
+    "00/84:0000",
+    "0D/10:01012C",
+    "0D/10:000600",
+    "00/04:0000",
+    "00/84:0000"
+  ],
+  "plannedSequenceMeaning": "The private result field named capturedSequence lists the planned sequence. It is not a trace of performed commands. The performed logical stages below are reported by the typed result, not independently sniffed native submissions.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "startedAtUtc": "2026-09-29T23:32:40.0121479Z",
+      "completedAtUtc": "2026-09-29T23:35:40.7956522Z",
+      "queryArtifact": {
+        "kind": "TypedTrialResultJson",
+        "sha256": "C6174DFB6842B128D65D310AB125A27C25FE4E72B8E6FA294620B88404C71F0B",
+        "byteLength": 1692,
+        "rawArtifactCommitted": false
+      },
+      "preflight": {
+        "operatorPresentConfirmed": true,
+        "savedOperatorFanMode": "Auto",
+        "savedOperatorLighting": "Full-brightness static green",
+        "padDependentHyperBoostInactiveConfirmed": true,
+        "appEngineCount": 0,
+        "usbPcapProcessCount": 0,
+        "activeRazerServiceCount": 0,
+        "recoveryAuthorizedIfNeeded": true
+      },
+      "performedLogicalSequenceAccordingToResult": [
+        "00/84:0000",
+        "00/04:0300",
+        "00/84:0000",
+        "0D/10:01012C"
+      ],
+      "result": {
+        "rawBaseline": "0000",
+        "rawCandidate": "0300",
+        "rawRestored": null,
+        "modeAcquireAttempted": true,
+        "modeAcquireAcknowledged": true,
+        "candidateConfirmed": true,
+        "fixedAttempted": true,
+        "fixedAcknowledged": true,
+        "fixedPhysicalConfirmedByCommand": false,
+        "autoAttempted": false,
+        "autoAcknowledged": false,
+        "modeRestoreAttempted": false,
+        "modeRestoreAcknowledged": false,
+        "rawRestorationConfirmed": false,
+        "failurePhase": "fixedPhysicalConfirmation",
+        "failure": "OperatorTimeout",
+        "exitCode": 2,
+        "manualRecoveryRequired": true,
+        "retryPerformed": false,
+        "recoveryPerformedByCommand": false,
+        "hardwareRegressionEstablished": false
+      },
+      "operatorOutcome": {
+        "observedAtUtc": "2026-09-29T23:36:35.4974939Z",
+        "spontaneousReply": "it is now medium",
+        "physicalReply": "Normal; green lighting unchanged",
+        "physicalReplyReceivedAfterCommandTimeout": true,
+        "physicalReplySubmittedToCommand": false,
+        "exactRpmReadbackConfirmed": false,
+        "summary": "The operator reported Medium and later normal fan behavior with unchanged green lighting. The command had already timed out while waiting for its physical confirmation; these replies do not change the recorded command outcome or establish a hardware regression."
+      },
+      "subsequentVendorRecovery": {
+        "recordedAtUtc": "2026-09-29T23:38:30.7762095Z",
+        "operatorReply": "it is okay, it is back to auto now via Synapse",
+        "normalExitReply": "Exited; Auto and green lighting normal",
+        "recoveryViaSynapseReported": true,
+        "powerCycleReported": false,
+        "openBladeAutoRestorationPerformed": false,
+        "openBladeModeRestorationPerformed": false,
+        "summary": "During the recovery workflow, two service-start requests failed without administrator access. AppEngine was launched; after the user requested no Synapse, stopping it was attempted. The operator then restored Auto through Synapse and confirmed normal exit. This vendor recovery is separate from the timed-out trial and does not validate OpenBlade restoration."
+      }
+    },
+    {
+      "attempt": 2,
+      "startedAtUtc": "2026-09-29T23:39:23.4703197Z",
+      "completedAtUtc": "2026-09-29T23:39:23.7187159Z",
+      "queryArtifact": {
+        "kind": "TypedTrialResultJson",
+        "sha256": "C689239572D3E34BBA497389607BB7D4E979D692934BAAB3C83462546A20A192",
+        "byteLength": 1683,
+        "rawArtifactCommitted": false
+      },
+      "preflight": {
+        "newAttemptExplicitlyRequested": true,
+        "userReply": "do the trial",
+        "priorOperatorReply": "Exited; Auto and green lighting normal",
+        "appEngineCount": 0,
+        "activeRazerServiceCount": 0,
+        "recoveryAcknowledgementMetadata": "ManualPowerCycleAndVendorRecovery",
+        "recoveryAcknowledgementIsCommandMetadataOnly": true,
+        "freshVendorRecoveryPermissionEstablished": false,
+        "stoppedServiceNames": ["Razer Elevation Service", "Razer Game Manager Service 3"],
+        "serviceStopExplicitlyAuthorized": true
+      },
+      "performedLogicalSequenceAccordingToResult": ["00/84:0000"],
+      "result": {
+        "rawBaseline": "0300",
+        "rawCandidate": null,
+        "rawRestored": null,
+        "modeAcquireAttempted": false,
+        "modeAcquireAcknowledged": false,
+        "fixedAttempted": false,
+        "fixedAcknowledged": false,
+        "autoAttempted": false,
+        "autoAcknowledged": false,
+        "modeRestoreAttempted": false,
+        "modeRestoreAcknowledged": false,
+        "rawRestorationConfirmed": false,
+        "failurePhase": "baselineRead",
+        "failure": "BaselineNot0000",
+        "exitCode": 2,
+        "manualRecoveryRequired": false,
+        "retryPerformed": false,
+        "recoveryPerformedByCommand": false,
+        "semanticSetterCount": 0,
+        "hardwareRegressionEstablished": false
+      },
+      "summary": "The new explicitly requested attempt returned raw0300 at baseline and stopped before every setter. Vendor Auto UI and normal physical observations do not imply raw0000. At completion of attempt 2, raw0300 was the last confirmed raw control value and a separately reviewed restoration path was pending. The old command's recovery acknowledgement is metadata, not renewed permission to use Synapse or evidence that recovery occurred. Later separate raw-control recovery is recorded in 2026-09-29-rz09-0528-cooling-pad-raw-control-recovery.json."
+    }
+  ],
+  "productionAdmission": {
+    "coolingPadModeWriteAdmitted": false,
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "fanStateReadbackConfirmed": false,
+    "ownershipSemanticsConfirmed": false,
+    "reason": "The first exploratory attempt ended at operator confirmation without Auto or mode restoration. The second stopped at a nonzero raw baseline without setters. Neither establishes safe restoration, fan state, ownership or production admission."
+  },
+  "limitations": [
+    "These hashes and lengths identify private typed JSON results, not PCAP or independently retained native report traces. Transport acknowledgements and raw values are reported by the shared session.",
+    "The source capturedSequence field describes the plan, not actual execution. No completed seven-command round trip is claimed.",
+    "The late physical reply was not submitted to the command. OperatorTimeout is a confirmation timeout, not evidence of a hardware failure or successful restoration.",
+    "Medium is an operator observation, not an independent 2200-RPM or ownership readback. Raw0000 and raw0300 retain accessory-only unassigned semantics.",
+    "Vendor recovery does not establish an OpenBlade Auto or mode restoration primitive. No power cycle was reported.",
+    "At completion of attempt 2, the recovery constraint was no Synapse, the two authorized Razer services were stopped and raw-mode reconciliation was pending. The request to do the trial and the old command's recovery metadata did not renew vendor-recovery permission. The later separately reviewed raw-control recovery has its own annotation and does not rewrite these attempts or permit restarting vendor software.",
+    "Private result files, paths, process identifiers, serials and device-instance suffixes are excluded. BIOS is provenance only and imposes no admission gate."
+  ]
+}

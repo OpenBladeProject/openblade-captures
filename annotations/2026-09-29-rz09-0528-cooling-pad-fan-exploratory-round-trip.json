@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "CoolingPadExploratoryFanRoundTripTypedResult",
+  "evidenceProvenance": {
+    "controller": "OpenBlade.Capture commit 1c19debf8b712667822093dc2f9e428e4ff54171",
+    "role": "ExploratoryTypedResult",
+    "sourceCommit": "1c19debf8b712667822093dc2f9e428e4ff54171",
+    "captureDllSha256": "A5C87E56F6FADC37368E2E82BAD7F07A2EE6D74EC6F25AA578DF84A723F44A9D",
+    "usbPcapUsed": false,
+    "independentNativeReportTraceRetained": false
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureBufferBytes": 91,
+    "featureReportPrefixHex": "00",
+    "biosIsProvenanceOnly": true
+  },
+  "attempt": 3,
+  "startedAtUtc": "2026-09-29T23:47:05.3351548Z",
+  "completedAtUtc": "2026-09-29T23:48:15.7975451Z",
+  "queryArtifact": {
+    "kind": "TypedTrialResultJson",
+    "sha256": "0B3C59A523B5312CB77166901BB2507255D5F6DA1F40F8ABE5AEB2B0BD17A377",
+    "byteLength": 1651,
+    "rawArtifactCommitted": false
+  },
+  "preflight": {
+    "newTrialExplicitlyRequested": true,
+    "physicalBaselineReply": "Normal and unchanged",
+    "priorRawRecovery": "0300->0000",
+    "synapseUseForbidden": true,
+    "recoveryArgumentIsPriorAcknowledgementOnly": true,
+    "freshVendorRecoveryPermissionEstablished": false,
+    "prefilledPhysicalAnswers": false
+  },
+  "performedLogicalSequenceAccordingToResultAndReviewedSource": [
+    "00/84:0000",
+    "00/04:0300",
+    "00/84:0000",
+    "0D/10:01012C",
+    "0D/10:000600",
+    "00/04:0000",
+    "00/84:0000"
+  ],
+  "sequenceEvidenceLimit": "The private capturedSequence field is the planned sequence. Here the successful typed result and reviewed source separately establish completion of all seven logical exchanges. This is not an independently sniffed native packet trace or packet count.",
+  "result": {
+    "rawBaseline": "0000",
+    "rawCandidate": "0300",
+    "rawRestored": "0000",
+    "modeAcquireAttempted": true,
+    "modeAcquireAcknowledged": true,
+    "candidateConfirmed": true,
+    "fixedAttempted": true,
+    "fixedAcknowledged": true,
+    "fixedPhysicalConfirmed": true,
+    "autoAttempted": true,
+    "autoAcknowledged": true,
+    "autoPhysicalConfirmed": true,
+    "modeRestoreAttempted": true,
+    "modeRestoreAcknowledged": true,
+    "rawRestorationConfirmed": true,
+    "finalPhysicalConfirmed": true,
+    "failurePhase": null,
+    "failure": null,
+    "manualRecoveryRequired": false,
+    "exitCode": 0,
+    "lightingCommandsSubmitted": false,
+    "recoveryPerformedByCommand": false,
+    "synapseActionsPerformed": false,
+    "serviceActionsPerformed": false,
+    "powerCyclePerformed": false
+  },
+  "operatorOutcomes": [
+    {
+      "phase": "fixed",
+      "recordedAtUtc": "2026-09-29T23:47:38.4520002Z",
+      "physicalReply": "Medium; normal and green unchanged",
+      "submittedToCommand": true
+    },
+    {
+      "phase": "auto",
+      "recordedAtUtc": "2026-09-29T23:47:56.4929110Z",
+      "physicalReply": "Quiet Auto; normal and green unchanged",
+      "submittedToCommand": true
+    },
+    {
+      "phase": "final",
+      "recordedAtUtc": "2026-09-29T23:48:16.9785742Z",
+      "physicalReply": "Normal and unchanged",
+      "submittedToCommand": true
+    }
+  ],
+  "postExitObservation": {
+    "startedAtUtc": "2026-09-29T23:50:27.3740599Z",
+    "secondsSinceTrialExitFromUtcTimestamps": 131.5765148,
+    "sourceDerivedElapsedSeconds": -25067.6211866,
+    "elapsedTimeProvenance": "The original private started record is preserved. Its negative elapsed field resulted from local DateTime coercion; elapsed time here is recomputed from the explicit UTC timestamps using DateTimeOffset. This discrepancy does not affect the query payload or physical observations.",
+    "queryArtifact": {
+      "kind": "TypedReadOnlyQueryResultJson",
+      "sha256": "47627BAA16CF3C0346839AAA9330AD3340943BF2AA70900841E066D61B1CD704",
+      "byteLength": 757,
+      "rawArtifactCommitted": false
+    },
+    "sourceCommit": "1c19debf8b712667822093dc2f9e428e4ff54171",
+    "readOnlySemanticIntent": true,
+    "requestCommand": "00/84",
+    "requestPayloadHex": "0000",
+    "responsePayloadHex": "0000",
+    "transportSuccess": true,
+    "exitCode": 0,
+    "setterCount": 0,
+    "physicalRecordedAtUtc": "2026-09-29T23:54:10.6973334+00:00",
+    "physicalReply": "Still normal and unchanged",
+    "physicalConfirmed": true,
+    "physicalObservationPending": false,
+    "quietAutoConfirmedByOperator": true,
+    "greenLightingUnchangedConfirmedByOperator": true,
+    "noRedOrSleepConfirmedByOperator": true,
+    "replyAfterReadOnlyQuery": true,
+    "scope": "One fresh raw-control read after normal controller exit; no crash, disconnect, sleep or vendor handback validation."
+  },
+  "relatedAnnotations": [
+    "2026-09-29-rz09-0528-cooling-pad-fan-exploratory-attempts.json",
+    "2026-09-29-rz09-0528-cooling-pad-raw-control-recovery.json"
+  ],
+  "productionAdmission": {
+    "coolingPadModeWriteAdmitted": false,
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "fanStateReadbackConfirmed": false,
+    "ownershipSemanticsConfirmed": false,
+    "reason": "One attended exploratory fan round trip succeeded on this exact accessory, with raw restoration and all physical confirmations. It does not establish independent fan-state readback, ownership, vendor handback or production support."
+  },
+  "limitations": [
+    "This record preserves the private typed result hash and length. No PCAP or independent native report trace was retained.",
+    "Medium and Quiet Auto are operator observations. No exact RPM or independent firmware fan-state readback was obtained. Raw0000 and raw0300 retain accessory-only unassigned semantics.",
+    "All three operator replies were submitted during their confirmation phases; their private record timestamps describe record creation and can follow command completion.",
+    "The old recovery argument is prior acknowledgement metadata, not fresh permission to use Synapse. No Synapse, service, recovery or power-cycle action occurred during this trial. The two previously stopped Razer services remained stopped.",
+    "Success does not rewrite either earlier attempt. One completed trial is not evidence of repeated reliability, loaded behavior or vendor handback.",
+    "Private paths, process identifiers, serials and device-instance suffixes are excluded. BIOS is provenance only and imposes no admission gate."
+  ]
+}
