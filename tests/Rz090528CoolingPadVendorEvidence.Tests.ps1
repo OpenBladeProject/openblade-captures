@@ -60,4 +60,36 @@ Assert-True ($annotation.productionAdmission.coolingPadFanWriteAdmitted -eq $fal
     $annotation.productionAdmission.activeModeReadbackConfirmed -eq $false -and
     $annotation.productionAdmission.tachometerReadbackConfirmed -eq $false) `
     'Vendor evidence must keep OpenBlade mutation gates closed.'
+$annotationPath = Join-Path $repository 'annotations\2026-09-29-rz09-0528-cooling-pad-vendor-exit-reopen.json'
+& (Join-Path $repository 'tools\Test-CaptureEvidence.ps1') -AnnotationPath $annotationPath -SchemaOnly | Out-Null
+$annotation = Get-Content -LiteralPath $annotationPath -Raw | ConvertFrom-Json
+Assert-True ($annotation.capture.sha256 -ceq 'F6E97C42AF1398EFE91514F5629A7DAB82EC68D0A61C3BAC6D0118C0062967E7' -and
+    $annotation.capture.byteLength -eq 32567 -and $annotation.capture.stopMode -ceq 'Graceful' -and
+    $annotation.evidenceProvenance.openBladeTypedApplyPerformed -eq $false) `
+    'Exit/reopen evidence must retain exact provenance and vendor-only scope.'
+$exit = Get-Evidence 'VendorExitCandidatePair'
+$reopen = Get-Evidence 'VendorReopenCandidatePair'
+Assert-True ($exit.semanticPayloadHex -ceq '0000' -and $exit.transactionHex -ceq '0C' -and
+    $exit.requestFrame -eq 29 -and $exit.responseFrame -eq 32 -and
+    $exit.independentOwnershipReadbackConfirmed -eq $false -and
+    $reopen.semanticPayloadHex -ceq '0300' -and $reopen.rawModeQueryPairCount -eq 2 -and
+    $reopen.rawModeQueryResponsePayloadHex -ceq '0300') `
+    'Mode-family candidates must preserve packet correlation without assigning ownership.'
+$closed = Get-Evidence 'ClosedApplicationInterval'
+Assert-True ($closed.zeroAppEngineSnapshotCount -eq 3 -and
+    $closed.remainingRunningVendorServiceNames.Count -eq 3 -and
+    $closed.completeReportSilenceSeconds -eq 133.521335 -and
+    $closed.allVendorControllersAbsent -eq $false -and $closed.autonomousPadOperationConfirmed -eq $false) `
+    'Sampled application exit must not establish absent controllers or autonomous firmware.'
+$transport = Get-Evidence 'TransportAndCaptureCleanup'
+Assert-True ($transport.completeRazerBodyCount -eq 173 -and
+    $transport.allCompleteBodyChecksumsValid -eq $true -and
+    $transport.userModeFeatureReportIdValidated -eq $false -and
+    $transport.openBladeServiceRestarted -eq $true -and $transport.captureErrorCount -eq 0) `
+    'Transport evidence must preserve framing and cleanup boundaries.'
+Assert-True ($annotation.productionAdmission.coolingPadFanWriteAdmitted -eq $false -and
+    $annotation.productionAdmission.coolingPadLightingWriteAdmitted -eq $false -and
+    $annotation.productionAdmission.openBladeHandbackValidated -eq $false -and
+    $annotation.productionAdmission.independentPadOwnershipConfirmed -eq $false) `
+    'Exit/reopen evidence must keep mutation and ownership gates closed.'
 Write-Host 'RZ09-0528 cooling-pad vendor evidence tests passed.'
