@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "CoolingPadRequestedPreferredAutoRecoveryTypedResult",
+  "purpose": "reassert-requested-preferred-Auto",
+  "evidenceProvenance": {
+    "controller": "OpenBlade.Capture commit 248ec506ed606f6b14bd9667bd80ee2ca2a55995",
+    "sourceCommit": "248ec506ed606f6b14bd9667bd80ee2ca2a55995",
+    "captureApphostSha256": "4CA502D04D8CD18B08CC41CDDED5D900118CEA1580DD429FDF7E3C98FA15ADFB",
+    "captureDllSha256": "C82A62866DA27D15F2FDAC6C8729FC2ED000FFC653677EC1357F0A764514FB97",
+    "existingSevenCommandRunnerUnchanged": true,
+    "hardwareTested": true,
+    "usbPcapUsed": false,
+    "independentNativeReportTraceRetained": false
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "interfaceNumber": "00",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureBufferBytes": 91,
+    "featureReportPrefixHex": "00",
+    "biosIsProvenanceOnly": true
+  },
+  "startedAtUtc": "2026-09-30T02:33:02.7510550+00:00",
+  "completedAtUtc": "2026-09-30T02:34:16.6198235+00:00",
+  "queryArtifact": {
+    "kind": "TypedRequestedPreferredAutoRecoveryResultJson",
+    "sha256": "BF86D90201FE261E21EC87D858950070DF38EC61D04D1E52013604D64F765372",
+    "byteLength": 2283,
+    "rawArtifactCommitted": false
+  },
+  "preflight": {
+    "operatorInitialStateRecordedAtUtc": "2026-09-30T02:33:02.7275268+00:00",
+    "operatorInitialStateReply": "yes, confirmed",
+    "initialPhysicalState": "normal Medium, full-brightness static green, no red/sleep, HyperBoost inactive; USB and 12 V connected",
+    "requestedPhysicalTarget": "preferred quiet Auto",
+    "initialPhysicalObservationConfirmed": true,
+    "initialNormalMediumConfirmed": true,
+    "fullBrightnessStaticGreenConfirmed": true,
+    "noRedOrSleepConfirmed": true,
+    "padDependentHyperBoostInactiveConfirmed": true,
+    "usbAnd12VConnectedConfirmed": true,
+    "operatorPresent": true,
+    "synapseUseForbidden": true,
+    "blockedControllerOrCaptureProcesses": 0,
+    "activeRazerServiceCount": 0,
+    "recoveryAcknowledgement": "ManualPowerCycleOnly",
+    "prefilledPhysicalAnswers": false
+  },
+  "performedLogicalSequenceAccordingToResultAndReviewedSource": [
+    "00/84:0000",
+    "00/04:0300",
+    "00/84:0000",
+    "0D/10:01012C",
+    "0D/10:000600",
+    "00/04:0000",
+    "00/84:0000"
+  ],
+  "sequenceEvidenceLimit": "The private capturedSequence field is the planned sequence only. Successful result flags and the reviewed unchanged seven-command core establish completion of these seven logical exchanges. This is not an independently sniffed native packet trace or packet count.",
+  "physicalTarget": {
+    "initialState": "normal Medium with unchanged green lighting and no red sleep",
+    "requestedState": "preferred quiet Auto with unchanged green lighting and no red sleep",
+    "purposeIsRestoreInitialPhysicalMedium": false,
+    "requestedPreferredQuietAutoAchieved": true,
+    "requestedPreferredQuietAutoFinalConfirmed": true,
+    "rawControlStateIsFanReadback": false
+  },
+  "result": {
+    "requestedRecoverySequenceCompleted": true,
+    "nativeRunnerInvoked": true,
+    "runnerResultUnavailable": false,
+    "submissionStateUnknown": false,
+    "rawBaseline": "0000",
+    "rawCandidate": "0300",
+    "rawRestored": "0000",
+    "modeAcquireAttempted": true,
+    "modeAcquireAcknowledged": true,
+    "candidateConfirmed": true,
+    "fixedAttempted": true,
+    "fixedAcknowledged": true,
+    "fixedPhysicalConfirmed": true,
+    "autoAttempted": true,
+    "autoAcknowledged": true,
+    "autoPhysicalConfirmed": true,
+    "modeRestoreAttempted": true,
+    "modeRestoreAcknowledged": true,
+    "rawRestorationConfirmed": true,
+    "finalPhysicalConfirmed": true,
+    "preferredAutoPhysicalConfirmed": true,
+    "preferredAutoFinalPhysicalConfirmed": true,
+    "failurePhase": null,
+    "failure": null,
+    "manualRecoveryRequired": false,
+    "exitCode": 0,
+    "lightingCommandsSubmitted": false,
+    "automaticRecovery": false,
+    "synapseActionsPerformed": false,
+    "serviceActionsPerformed": false,
+    "powerCyclePerformedDuringThisSequence": false,
+    "retryPerformed": false
+  },
+  "operatorOutcomes": [
+    {
+      "phase": "fixed",
+      "recordedAtUtc": "2026-09-30T02:33:49.9363499+00:00",
+      "userReply": "yes",
+      "normalMediumConfirmed": true,
+      "fullBrightnessStaticGreenConfirmed": true,
+      "noRedOrSleepConfirmed": true,
+      "submittedToRunner": true
+    },
+    {
+      "phase": "preferred-auto",
+      "recordedAtUtc": "2026-09-30T02:34:11.5480153+00:00",
+      "userReply": "confirmed",
+      "preferredQuietAutoAchieved": true,
+      "fullBrightnessStaticGreenConfirmed": true,
+      "noRedOrSleepConfirmed": true,
+      "submittedToRunner": true
+    },
+    {
+      "phase": "final-preferred-auto",
+      "recordedAtUtc": "2026-09-30T02:34:55.3382121+00:00",
+      "userReply": "yes",
+      "preferredQuietAutoRemainsNormal": true,
+      "fullBrightnessStaticGreenConfirmed": true,
+      "noRedOrSleepConfirmed": true,
+      "submittedToRunner": true
+    }
+  ],
+  "relationshipToEarlierFailedTrial": {
+    "annotation": "2026-09-29-rz09-0528-cooling-pad-fixed-usb-reconnect-blocked-restoration.json",
+    "separateSequence": true,
+    "earlierFailedTrialOutcomeChanged": false,
+    "earlierManualPowerCyclePartOfThisSequence": false
+  },
+  "productionAdmission": {
+    "coolingPadModeWriteAdmitted": false,
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "fanStateReadbackConfirmed": false,
+    "rpmReadbackConfirmed": false,
+    "ownershipSemanticsConfirmed": false,
+    "reason": "The attended user-requested sequence achieved preferred quiet Auto from present normal Medium, with green lighting unchanged and no red sleep. It used the unchanged captured seven-command core and confirmed raw0000 restoration separately from the requested physical target. This was reassertion of a requested preference, not restoration of initial physical Medium, independent fan-state/RPM readback, ownership, handback or production support."
+  },
+  "limitations": [
+    "The hash and length identify a private typed recovery result, not PCAP or an independently retained native report trace. The private capturedSequence list alone describes a plan, not execution or a native packet count.",
+    "Initial normal Medium and requested preferred quiet Auto are different physical states. The sequence intentionally achieved the requested quiet preference; it did not restore initial physical Medium.",
+    "The operator confirmed Medium after the Fixed write and quiet Auto after the Auto write and at the final check. No exact RPM, independent firmware fan-state or ownership readback was obtained. Raw0000 and raw0300 retain accessory-only unassigned semantics; raw restoration is not fan readback.",
+    "Operator record timestamps preserve exact journal-save values and may follow command completion; they are not YES submission timestamps. The successful typed result proves all physical confirmations were accepted during the command.",
+    "No Synapse, service restart, power cycle or retry occurred in this sequence. The prior operator-reported USB-and-12-V power cycle and failed Fixed USB trial remain separate historical evidence and are not changed by this recovery.",
+    "No further lifecycle trial, new-process boundary, crash, forced termination, sleep, USB interruption or vendor handback was tested in this sequence.",
+    "Private paths, process identifiers, nonces, serials, device-instance suffixes, module identifiers and raw native reports are excluded. BIOS is provenance only and imposes no admission gate."
+  ]
+}

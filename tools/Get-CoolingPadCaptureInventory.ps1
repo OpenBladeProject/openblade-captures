@@ -4,7 +4,9 @@ param(
     [ValidateNotNullOrEmpty()]
     [string]$OutputPath,
 
-    [switch]$Force
+    [switch]$Force,
+
+    [switch]$InspectFeatureReportIds
 )
 
 $ErrorActionPreference = 'Stop'
@@ -58,6 +60,14 @@ using System.Text.RegularExpressions;
 
 namespace OpenBlade.Capture
 {
+    public sealed class CoolingPadReportIdObservation
+    {
+        public byte CandidateId { get; set; }
+        public string ParserStatusHex { get; set; }
+        public bool DescriptorRecognized { get; set; }
+        public byte? InitializedPrefix { get; set; }
+    }
+
     public sealed class CoolingPadHidCollection
     {
         public ushort VendorId { get; set; }
@@ -76,6 +86,7 @@ namespace OpenBlade.Capture
         public ushort OutputValueCaps { get; set; }
         public ushort FeatureButtonCaps { get; set; }
         public ushort FeatureValueCaps { get; set; }
+        public CoolingPadReportIdObservation[] FeatureReportIdCandidates { get; set; }
     }
 
     public static class CoolingPadHidInventory
@@ -149,6 +160,31 @@ namespace OpenBlade.Capture
         [DllImport("hid.dll")]
         private static extern int HidP_GetCaps(IntPtr preparsedData, out HidpCaps capabilities);
 
+        // Initializes caller memory using cached descriptor data; no device I/O.
+        [DllImport("hid.dll")]
+        private static extern int HidP_InitializeReportForID(
+            int reportType, byte reportId, IntPtr preparsedData,
+            [Out] byte[] report, uint reportLength);
+
+        private static CoolingPadReportIdObservation[] InspectIds(IntPtr data, ushort length)
+        {
+            var observations = new List<CoolingPadReportIdObservation>();
+            foreach (byte id in new byte[] { 0x00, 0x05 })
+            {
+                var buffer = new byte[length];
+                int status = HidP_InitializeReportForID(2, id, data, buffer, (uint)buffer.Length);
+                bool recognized = status == 0x00110000;
+                observations.Add(new CoolingPadReportIdObservation
+                {
+                    CandidateId = id,
+                    ParserStatusHex = String.Format("0x{0:X8}", status),
+                    DescriptorRecognized = recognized,
+                    InitializedPrefix = recognized ? (byte?)buffer[0] : null
+                });
+            }
+            return observations.ToArray();
+        }
+
         [DllImport("setupapi.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr SetupDiGetClassDevsW(
             ref Guid classGuid,
@@ -189,7 +225,7 @@ namespace OpenBlade.Capture
             uint flagsAndAttributes,
             IntPtr templateFile);
 
-        public static CoolingPadHidCollection[] Enumerate(ushort vendorId, ushort productId)
+        public static CoolingPadHidCollection[] Enumerate(ushort vendorId, ushort productId, bool inspectIds)
         {
             Guid hidGuid;
             HidD_GetHidGuid(out hidGuid);
@@ -333,7 +369,14 @@ namespace OpenBlade.Capture
                                     OutputButtonCaps = capabilities.NumberOutputButtonCaps,
                                     OutputValueCaps = capabilities.NumberOutputValueCaps,
                                     FeatureButtonCaps = capabilities.NumberFeatureButtonCaps,
-                                    FeatureValueCaps = capabilities.NumberFeatureValueCaps
+                                    FeatureValueCaps = capabilities.NumberFeatureValueCaps,
+                                    FeatureReportIdCandidates = inspectIds &&
+                                        attributes.VersionNumber == 0x0200 &&
+                                        capabilities.UsagePage == 0x000C && capabilities.Usage == 0x0001 &&
+                                        interfaceMatch.Success && interfaceMatch.Groups[1].Value == "00" &&
+                                        capabilities.FeatureReportByteLength == 91
+                                        ? InspectIds(preparsedData, capabilities.FeatureReportByteLength)
+                                        : new CoolingPadReportIdObservation[0]
                                 });
                             }
                             finally
@@ -406,7 +449,7 @@ if ($usbInterfaceNumbers -notcontains '00' -or
 }
 
 $hidCollections = @(
-    [OpenBlade.Capture.CoolingPadHidInventory]::Enumerate($vendorId, $productId) |
+    [OpenBlade.Capture.CoolingPadHidInventory]::Enumerate($vendorId, $productId, [bool]$InspectFeatureReportIds) |
         Where-Object { $_.Revision -eq 0x0200 } |
         Sort-Object InterfaceNumber, CollectionNumber |
         ForEach-Object {
@@ -425,6 +468,14 @@ $hidCollections = @(
                 outputValueCaps = [int]$_.OutputValueCaps
                 featureButtonCaps = [int]$_.FeatureButtonCaps
                 featureValueCaps = [int]$_.FeatureValueCaps
+                featureReportIdCandidates = @($_.FeatureReportIdCandidates | ForEach-Object {
+                    [ordered]@{
+                        candidateIdHex = '0x{0:X2}' -f $_.CandidateId
+                        parserStatusHex = $_.ParserStatusHex
+                        descriptorRecognized = $_.DescriptorRecognized
+                        initializedPrefixHex = if ($null -ne $_.InitializedPrefix) { '0x{0:X2}' -f $_.InitializedPrefix } else { $null }
+                    }
+                })
             }
         }
 )
@@ -470,6 +521,9 @@ $inventory = [ordered]@{
     }
     transport = [ordered]@{
         usbComposite = $true
+        featureReportIdInspectionRequested = [bool]$InspectFeatureReportIds
+        featureReportIdInspectionSendsReports = $false
+        userModeFeatureIoValidated = $false
         usbInterfaceCount = $usbInterfaces.Count
         hidCollectionCount = $hidCollections.Count
         controlCollection = [ordered]@{

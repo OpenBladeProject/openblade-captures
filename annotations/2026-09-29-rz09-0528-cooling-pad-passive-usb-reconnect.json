@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "CoolingPadPassivePoweredUsbReconnectTypedResults",
+  "evidenceProvenance": {
+    "controller": "OpenBlade.Capture commit 1c19debf8b712667822093dc2f9e428e4ff54171",
+    "sourceCommit": "1c19debf8b712667822093dc2f9e428e4ff54171",
+    "captureDllSha256": "A5C87E56F6FADC37368E2E82BAD7F07A2EE6D74EC6F25AA578DF84A723F44A9D",
+    "usbPcapUsed": false,
+    "independentNativeReportTraceRetained": false
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "interfaceNumber": "00",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureBufferBytes": 91,
+    "featureReportPrefixHex": "00",
+    "biosIsProvenanceOnly": true
+  },
+  "preflight": {
+    "preparedAtUtc": "2026-09-30T00:00:48.1045782+00:00",
+    "appEngineCount": 0,
+    "usbPcapProcessCount": 0,
+    "activeRazerServiceCount": 0,
+    "stoppedServiceNames": ["Razer Elevation Service", "Razer Game Manager Service 3"],
+    "physicalActionStartedAtPreparation": false,
+    "baselineOperatorRecordedAtUtc": "2026-09-30T00:04:00.1546179+00:00",
+    "baselineOperatorReply": "confirmed",
+    "quietAutoConfirmed": true,
+    "fullBrightnessStaticGreenConfirmed": true,
+    "noRedOrSleepConfirmed": true,
+    "padDependentHyperBoostInactiveConfirmed": true,
+    "usbAnd12VConnectedConfirmed": true
+  },
+  "baselineQuery": {
+    "completedAtUtc": "2026-09-30T00:00:48.4038375+00:00",
+    "queryArtifact": {
+      "kind": "TypedReadOnlyQueryResultJson",
+      "sha256": "47627BAA16CF3C0346839AAA9330AD3340943BF2AA70900841E066D61B1CD704",
+      "byteLength": 757,
+      "rawArtifactCommitted": false
+    },
+    "requestCommand": "00/84",
+    "requestPayloadHex": "0000",
+    "responsePayloadHex": "0000",
+    "readOnlySemanticIntent": true,
+    "transportSuccess": true,
+    "exitCode": 0
+  },
+  "operatorReconnect": {
+    "recordedAtUtc": "2026-09-30T00:05:43.2784054+00:00",
+    "userReply": "reconnected, no changes",
+    "usbOnlyActionInstructed": true,
+    "approximateDisconnectSecondsInstructed": 5,
+    "independentlyTimed": false,
+    "power12VRetainedInstructed": true,
+    "fanAndLightingUnchangedReported": true,
+    "scope": "A passive USB-only disconnect and reconnect was instructed from quiet Auto with 12V power retained. No independent trace measures the disconnect duration or retained power."
+  },
+  "freshEnumeration": {
+    "performedBeforePostQuery": true,
+    "baselineAndPostControlGeometryEqual": true,
+    "interfaceNumber": "00",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureReportBytes": 91,
+    "hidCollectionCount": 6,
+    "usbInterfaceCount": 2,
+    "scope": "Fresh inventory confirmed the same selected accessory geometry. Inventory alone does not validate user-mode feature I/O or establish physical behavior."
+  },
+  "postReconnectQuery": {
+    "startedAtUtc": "2026-09-30T00:05:46.1072863+00:00",
+    "completedAtUtc": "2026-09-30T00:05:46.3469597+00:00",
+    "queryArtifact": {
+      "kind": "TypedReadOnlyQueryResultJson",
+      "sha256": "47627BAA16CF3C0346839AAA9330AD3340943BF2AA70900841E066D61B1CD704",
+      "byteLength": 757,
+      "rawArtifactCommitted": false
+    },
+    "requestCommand": "00/84",
+    "requestPayloadHex": "0000",
+    "responsePayloadHex": "0000",
+    "readOnlySemanticIntent": true,
+    "transportSuccess": true,
+    "exitCode": 0,
+    "appEngineCount": 0,
+    "usbPcapProcessCount": 0,
+    "activeRazerServiceCount": 0
+  },
+  "operatorFinal": {
+    "recordedAtUtc": "2026-09-30T00:06:14.0032239+00:00",
+    "userReply": "Still normal and unchanged",
+    "quietAutoConfirmed": true,
+    "fullBrightnessStaticGreenConfirmed": true,
+    "noRedOrSleepConfirmed": true,
+    "replyAfterPostReconnectQuery": true,
+    "physicalObservationPending": false
+  },
+  "executionBoundaries": {
+    "logicalQueryCount": 2,
+    "setterCount": 0,
+    "synapseActionsPerformed": false,
+    "serviceActionsPerformed": false,
+    "usbPcapUsed": false,
+    "powerCyclePerformed": false,
+    "shellParserFailureBeforeCommands": true,
+    "deviceFailureEstablishedByParserFailure": false,
+    "deviceIoRetryPerformed": false,
+    "parserFailureExplanation": "An initial shell expression failed to parse because a numeric field value was unquoted. No commands ran in that invocation. Correcting shell syntax was not a device I/O retry or hardware failure."
+  },
+  "productionAdmission": {
+    "coolingPadModeWriteAdmitted": false,
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "fanStateReadbackConfirmed": false,
+    "ownershipSemanticsConfirmed": false,
+    "reason": "One passive powered USB reconnect preserved reported quiet Auto and lighting, with raw0000 before and after. It does not validate interruption of Fixed control, crash recovery, power loss, sleep, ownership, RPM or production support."
+  },
+  "limitations": [
+    "Both hashes and lengths identify private typed query results. Their contents are identical; no independent native trace or PCAP was retained.",
+    "The approximate five-second USB disconnect and retained 12V power were instructions, not independently measured facts. The operator reported reconnection with no physical changes.",
+    "This was passive reconnect from quiet Auto. No Fixed command was interrupted and no setter was submitted. It is not crash, sleep, power-loss or vendor-handback evidence.",
+    "Raw0000 retains accessory-only unassigned semantics. Quiet Auto is an operator observation, not exact RPM, independent fan firmware-state or ownership readback.",
+    "Private paths, process identifiers, serials and device-instance suffixes are excluded. BIOS is provenance only and imposes no admission gate."
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 2,
+  "evidenceProvenance": {
+    "controller": "Razer Synapse AppEngine 4.0.821.53; USBPcap wrapper at captures commit 4f2bf1565c7557439760db7e45104bb1e8b62bfd",
+    "role": "OracleCapture",
+    "openBladeTypedApplyPerformed": false,
+    "openBladeReadbackConfirmed": false
+  },
+  "capturedAtUtc": "2026-09-29T21:22:30.1309951Z",
+  "device": { "modelNumber": "RZ09-0528", "vendorIdHex": "1532", "productIdHex": "0F43", "bios": "2.02", "ec": null, "mcu": null },
+  "capture": {
+    "sha256": "0A025B0B247D4397770C278C79A19AED26E0ECC838FD7F9F4327106B523B9932",
+    "byteLength": 40565,
+    "rawCaptureCommitted": false,
+    "captureMode": "DeviceAddress",
+    "selectedDeviceCount": 0,
+    "stopMode": "Graceful",
+    "forcedShutdownDataLossDisclosed": false,
+    "decodable": true
+  },
+  "action": {
+    "kind": "Observation",
+    "subsystem": "Cooling-pad vendor-controller lifecycle",
+    "name": "Normal Synapse exit and reopening from Fixed Medium 2200",
+    "value": "Auto baseline, vendor Fixed Medium 2200 selection, normal exit/reopen, then vendor Auto restoration",
+    "operatorConfirmed": true
+  },
+  "validation": {
+    "priorStateSaved": true,
+    "applyResult": "Operator answered done to the Fixed Medium 2200 normal-response and unchanged-lighting prompt. No OpenBlade pad command was sent.",
+    "readbackResult": "At exit the operator reported done, nothing really changed. On reopening the operator reported still shows fixed. This is UI and physical observation, not independent target, RPM or ownership readback.",
+    "restorationResult": "Operator answered done to restoration of preferred Auto with normal fan response, full-brightness static green and no red or sleep indication.",
+    "restorationReadbackResult": "A matching acknowledged vendor Auto pair was captured. Capture stopped gracefully, with no errors, and OpenBlade restarted."
+  },
+  "sanitizedEvidence": [
+    {
+      "kind": "ExactScopeAndBaseline",
+      "summary": "Preflight checked exact RZ09-05289EN4 BIOS 2.02 and pad revision 0200 before selected-device capture. The operator confirmed Auto, full-brightness static green and normal fan behavior before starting.",
+      "sku": "RZ09-05289EN4",
+      "revisionHex": "0200",
+      "savedFanMode": "Auto",
+      "savedBrightnessPercent": 100,
+      "savedLightingEffect": "Static",
+      "savedOperatorColor": "Green",
+      "openBladePadWriteCount": 0
+    },
+    {
+      "kind": "VendorModeLifecycle",
+      "summary": "The exit/startup mode-family sequence matches the prior Auto session: exit 00/04:0000, startup 00/04:0300, then two 00/84:0000 queries returning 0300. These remain raw accessory candidates with unassigned semantics.",
+      "exitRequestFrame": 57,
+      "exitResponseFrame": 60,
+      "exitTransactionHex": "0B",
+      "exitPayloadHex": "0000",
+      "exitRequestAtUtc": "2026-09-29T21:24:22.837628Z",
+      "exitResponseAtUtc": "2026-09-29T21:24:22.844140Z",
+      "startupRequestFrame": 71,
+      "startupResponseFrame": 74,
+      "startupTransactionHex": "01",
+      "startupPayloadHex": "0300",
+      "startupRequestAtUtc": "2026-09-29T21:25:13.234918Z",
+      "startupResponseAtUtc": "2026-09-29T21:25:13.244943Z",
+      "responseStatusHex": "02",
+      "semanticEchoMatched": true,
+      "transactionMatched": true,
+      "rawModeQueryPairCount": 2,
+      "rawModeQueryResponsePayloadHex": "0300",
+      "fanSetterAtExitCount": 0,
+      "safeOpenBladeReleaseConfirmed": false
+    },
+    {
+      "kind": "VendorFixedPairsAndAutoRestoration",
+      "summary": "Eight acknowledged 0D/10:01012C pairs occur: the initial Medium selection and seven after reopening. Three are in initialization, with four further vendor repetitions of unexplained trigger. They are not assigned additional operator actions. One final acknowledged 0D/10:000600 pair correlates with requested Auto restoration.",
+      "mediumPayloadHex": "01012C",
+      "mediumPairCount": 8,
+      "mediumRequestFrames": [23, 83, 115, 163, 385, 389, 395, 399],
+      "mediumResponseFrames": [26, 86, 118, 166, 388, 392, 398, 402],
+      "postReopenMediumPairCount": 7,
+      "autoPayloadHex": "000600",
+      "autoPairCount": 1,
+      "autoRequestFrame": 423,
+      "autoResponseFrame": 426,
+      "autoTransactionHex": "1A",
+      "autoRequestAtUtc": "2026-09-29T21:26:20.710762Z",
+      "autoResponseAtUtc": "2026-09-29T21:26:20.720013Z",
+      "responseStatusHex": "02",
+      "allTransactionsAndSemanticEchoesMatched": true,
+      "hostDemandWriteCount": 0,
+      "fanStateQueryCount": 0,
+      "independentFanStateReadbackConfirmed": false
+    },
+    {
+      "kind": "ClosedApplicationAndLightingInterval",
+      "summary": "Two snapshots found zero AppEngine processes while the three named vendor services stayed running. Complete Razer reports pause from exit acknowledgement to the first startup request; green frame updates also pause. The operator noticed no physical change. Sampled process absence and retained services do not establish independent firmware control.",
+      "zeroAppEngineSnapshotCount": 2,
+      "sampledAppEngineAbsenceSeconds": 20.5151761,
+      "remainingRunningVendorServiceNames": ["Razer Elevation Service", "Razer Game Manager Service 3", "thx_rznb11_service"],
+      "completeReportSilenceSeconds": 49.650182,
+      "lightingFrameGapSeconds": 52.886452,
+      "lightingFrameRequestCount": 141,
+      "lastPreExitLightingFrame": 55,
+      "firstReopenedLightingFrame": 183,
+      "brightnessQueryPairCount": 2,
+      "brightnessQueryResponsePayloadHex": "0105FF",
+      "brightnessSetterPairCount": 2,
+      "brightnessSetterPayloadHex": "0100FF",
+      "autonomousPadOperationConfirmed": false,
+      "firmwareNativeLightingEffectConfirmed": false
+    },
+    {
+      "kind": "PostCaptureMemoryOnlyDescriptorCheck",
+      "summary": "After capture ended, the opt-in metadata inventory called HidP_InitializeReportForID on cached preparsed data and fresh 91-byte memory buffers. Both candidate IDs 00 and 05 returned C0110010 (report does not exist), with no initialized prefix admitted. No feature-report get or set was called. Zero feature button/value capabilities and this inconclusive parser check leave user-mode framing unresolved.",
+      "outsideCapture": true,
+      "candidateReportIdsHex": ["00", "05"],
+      "candidateParserStatusesHex": ["C0110010", "C0110010"],
+      "descriptorRecognizedCandidateCount": 0,
+      "featureReportBytes": 91,
+      "featureButtonCaps": 0,
+      "featureValueCaps": 0,
+      "featureReportsSent": 0,
+      "userModeFeatureIoValidated": false
+    },
+    {
+      "kind": "TransportAndCleanup",
+      "summary": "All 216 complete 90-byte bodies pass checksums with zero reserved tails. Thirty-seven GET_REPORT setup packets use wire selector 0300 on interface zero with length 90. Windows user-mode framing remains unvalidated. Capture stopped gracefully with no errors and the previously running OpenBlade service restarted.",
+      "completeRazerBodyCount": 216,
+      "allCompleteBodyChecksumsValid": true,
+      "rawUsbGetReportSetupCount": 37,
+      "rawUsbFeatureReportSelectorHex": "0300",
+      "rawUsbReportBodyBytes": 90,
+      "userModeFeatureReportIdValidated": false,
+      "openBladeServiceRestarted": true,
+      "captureErrorCount": 0
+    }
+  ],
+  "limitations": [
+    "Fixed surviving vendor exit/reopen is operator observation, not an independent mode, target, tachometer or ownership contract.",
+    "Vendor services remained running; process snapshots sample two points rather than continuous absence. Report and lighting gaps are measured separately from packets.",
+    "Repeated post-startup Medium pairs have unexplained triggers. No additional operator action or autonomous host-demand behavior is inferred.",
+    "No OpenBlade pad write was performed. The historical standalone Auto command's flashing-red sleep failure is not superseded by vendor-controlled lifecycle success.",
+    "Wire report-ID zero does not validate Windows user-mode report framing. No guessed report-ID query is authorized by this evidence.",
+    "Serial-bearing initialization replies, raw PCAP, descriptor data, process identifiers, local paths and unrelated USB payloads remain private."
+  ],
+  "productionAdmission": {
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "independentPadOwnershipConfirmed": false,
+    "userModeFeatureReportIdValidated": false,
+    "reason": "Vendor lifecycle candidates repeat across Auto and Fixed, but independent handback, state readback and Windows user-mode framing remain unresolved."
+  },
+  "notes": ["Final operator-preferred state is Auto with full-brightness static-green lighting. Vendor processes were exited and reopened normally by the operator; no vendor service was stopped."]
+}

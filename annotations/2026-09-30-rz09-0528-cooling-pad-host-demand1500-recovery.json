@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "CoolingPadHostDemand1500FailureAndAttendedQuietRecovery",
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "interfaceNumber": "00",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureBufferBytes": 91,
+    "featureReportPrefixHex": "00",
+    "biosIsProvenanceOnly": true
+  },
+  "failedDemandTrial": {
+    "evidenceProvenance": {
+      "sourceCommit": "389a1db0ece446357520b3091dc5d1d90c34b9c2",
+      "captureApphostSha256": "ACF400E23431CD330F86DC88FECB1D7159768BA97D8E758BD743B1D848A07B94",
+      "captureDllSha256": "3F79FB3502F8C38CB9FAFEC7C7736B22D1153633023326186E7FBDDF8810FCAB",
+      "hardwareTested": true,
+      "usbPcapUsed": false,
+      "independentNativeReportTraceRetained": false
+    },
+    "startedAtUtc": "2026-09-30T07:18:02.4069893+00:00",
+    "completedAtUtc": "2026-09-30T07:21:18.4569625+00:00",
+    "queryArtifact": {
+      "kind": "TypedResultJson",
+      "sha256": "5FA811B9267723C96F5F6C15A5ECF5D8F702DE1CE1980FCFA02CD86F8AE1BEE2",
+      "byteLength": 4979,
+      "rawArtifactCommitted": false
+    },
+    "exitCode": 2,
+    "trialSequenceCompleted": false,
+    "initialPhysicalObservationConfirmed": true,
+    "configuredDemandRpm": 1500,
+    "performedLogicalSequenceAccordingToResultAndReviewedSource": [
+      "00/84:0000",
+      "00/04:0300",
+      "00/84:0000",
+      "0D/10:000600",
+      "0D/01:01051E"
+    ],
+    "result": {
+      "samples": [
+        {
+          "index": 0,
+          "stage": "preflightTelemetry",
+          "cpuCelsius": 45,
+          "gpuCelsius": 50,
+          "gpuInactive": false,
+          "hostAcquisitionAgeMilliseconds": 199.6865,
+          "plannedConfiguredDemandRpm": 1500,
+          "reason": "DemandPlanned",
+          "ageBeforeSubmissionMilliseconds": null,
+          "submissionAttempted": false,
+          "acknowledged": false,
+          "suppressedUnchanged": false
+        },
+        {
+          "index": 1,
+          "stage": "initialDemandTelemetry",
+          "cpuCelsius": 45,
+          "gpuCelsius": 50,
+          "gpuInactive": false,
+          "hostAcquisitionAgeMilliseconds": 162.8627,
+          "plannedConfiguredDemandRpm": 1500,
+          "reason": "DemandPlanned",
+          "ageBeforeSubmissionMilliseconds": 230.8535,
+          "submissionAttempted": true,
+          "acknowledged": true,
+          "suppressedUnchanged": false
+        }
+      ],
+      "rawBaseline": "0000",
+      "rawCandidate": "0300",
+      "rawRestored": null,
+      "modeAcquireAttempted": true,
+      "modeAcquireAcknowledged": true,
+      "demandEntryAttempted": true,
+      "demandEntryAcknowledged": true,
+      "firstDemandPhysicalConfirmed": false,
+      "curvePhysicalConfirmed": false,
+      "fixedAttempted": false,
+      "fixedAcknowledged": false,
+      "fixedPhysicalConfirmed": false,
+      "autoAttempted": false,
+      "autoAcknowledged": false,
+      "autoPhysicalConfirmed": false,
+      "modeRestoreAttempted": false,
+      "modeRestoreAcknowledged": false,
+      "rawRestorationConfirmed": false,
+      "finalPhysicalConfirmed": false,
+      "temperatureSourceConstructionStarted": true,
+      "temperatureSourceDisposalConfirmed": true,
+      "failurePhase": "firstDemandPhysicalConfirmation",
+      "failure": "OperatorTimeout",
+      "submissionStateUnknown": false,
+      "manualRecoveryRequired": true,
+      "productionAdmitted": false,
+      "measuredRpmConfirmed": false,
+      "ownershipConfirmed": false,
+      "handbackConfirmed": false
+    }
+  },
+  "rawStateRecovery": {
+    "sourceCommit": "389a1db0ece446357520b3091dc5d1d90c34b9c2",
+    "startedAtUtc": "2026-09-30T07:37:51.6264888+00:00",
+    "completedAtUtc": "2026-09-30T07:40:52.0637053+00:00",
+    "queryArtifact": {
+      "kind": "TypedResultJson",
+      "sha256": "5BE69D4AB50B865DF99CF89C5CC82B1EBB6C4069E2763C2F2A9ECAC8B474D470",
+      "byteLength": 989,
+      "rawArtifactCommitted": false
+    },
+    "exitCode": 2,
+    "fanCommandsSubmitted": false,
+    "performedLogicalSequenceAccordingToResultAndReviewedSource": [
+      "00/84:0000",
+      "00/04:0000",
+      "00/84:0000"
+    ],
+    "result": {
+      "rawBaseline": "0300",
+      "rawRestored": "0000",
+      "restoreAttempted": true,
+      "restoreAcknowledged": true,
+      "rawRestorationConfirmed": true,
+      "physicalConfirmed": false,
+      "failurePhase": "physicalConfirmation",
+      "failure": "OperatorTimeout",
+      "manualRecoveryRequired": true
+    },
+    "latePhysicalObservation": {
+      "recordedAtUtc": "2026-09-30T07:52:02.9642873+00:00",
+      "userReply": "yes\\",
+      "observation": "normal unchanged fan and static-green lighting no red/sleep after raw mode recovery",
+      "acceptedByRunner": false,
+      "changesTypedResult": false
+    }
+  },
+  "preferredQuietRecovery": {
+    "evidenceProvenance": {
+      "sourceCommit": "68d6cdb9d260f2dcc0de1aa7c48eb68129fbb37f",
+      "captureApphostSha256": "1A6E1133290B7169A69975EBA684922D2DE5644355F85AAAE6A47C0FD39125CC",
+      "captureDllSha256": "69F0C7212A59429FC0C6AD637BB9DCD35C6EB14DA3F10BA2E64857C8CDE8A8FD",
+      "hardwareTested": true,
+      "usbPcapUsed": false,
+      "independentNativeReportTraceRetained": false
+    },
+    "startedAtUtc": "2026-09-30T08:01:17.2945583+00:00",
+    "completedAtUtc": "2026-09-30T08:08:52.3822757+00:00",
+    "queryArtifact": {
+      "kind": "TypedResultJson",
+      "sha256": "0A2F9C288541ED2D4D3A2D9C6B12EC1B510515573DF90F22592ACB1E6C1E2774",
+      "byteLength": 2522,
+      "rawArtifactCommitted": false
+    },
+    "exitCode": 0,
+    "operatorWaitSeconds": 600,
+    "requestedRecoverySequenceCompleted": true,
+    "initialPhysicalObservationConfirmed": true,
+    "initialPhysicalState": "operator-confirmed-normal-current-fan-green-no-red-sleep-HyperBoost-inactive",
+    "previousConfiguredDemandRpm": 1500,
+    "previousConfiguredDemandIsFirmwareReadback": false,
+    "measuredRpmConfirmed": false,
+    "performedLogicalSequenceAccordingToResultAndReviewedSource": [
+      "00/84:0000",
+      "00/04:0300",
+      "00/84:0000",
+      "0D/10:01012C",
+      "0D/10:000600",
+      "00/04:0000",
+      "00/84:0000"
+    ],
+    "result": {
+      "rawBaseline": "0000",
+      "rawCandidate": "0300",
+      "rawRestored": "0000",
+      "modeAcquireAttempted": true,
+      "modeAcquireAcknowledged": true,
+      "candidateConfirmed": true,
+      "fixedAttempted": true,
+      "fixedAcknowledged": true,
+      "fixedPhysicalConfirmed": true,
+      "autoAttempted": true,
+      "autoAcknowledged": true,
+      "autoPhysicalConfirmed": true,
+      "modeRestoreAttempted": true,
+      "modeRestoreAcknowledged": true,
+      "rawRestorationConfirmed": true,
+      "finalPhysicalConfirmed": true,
+      "failurePhase": null,
+      "failure": null,
+      "manualRecoveryRequired": false,
+      "productionAdmitted": false,
+      "fanStateConfirmed": false,
+      "ownershipConfirmed": false,
+      "handbackConfirmed": false
+    },
+    "finalOperatorJournal": {
+      "recordedAtUtc": "2026-09-30T08:10:05.8712305+00:00",
+      "userReply": "yes",
+      "acceptedByRunner": true,
+      "quietNormalGreenNoRedSleepConfirmed": true
+    },
+    "postExitReadOnlyInventory": {
+      "recordedAtUtc": "2026-09-30T08:10:05.8828895+00:00",
+      "captureProcessCount": 0,
+      "activeRazerServiceCount": 0,
+      "processesModified": false
+    }
+  },
+  "actions": {
+    "synapseActionsPerformed": false,
+    "serviceActionsPerformed": false,
+    "powerCyclePerformed": false,
+    "lightingCommandsSubmitted": false,
+    "automaticRecoveryPerformed": false
+  },
+  "productionAdmission": {
+    "productionAdmitted": false,
+    "measuredRpmConfirmed": false,
+    "fanStateReadbackConfirmed": false,
+    "ownershipSemanticsConfirmed": false,
+    "handbackValidated": false,
+    "fullRangePhysicallyValidated": false,
+    "sustainedThermalTrackingValidated": false,
+    "firmwareAutoRegulationConfirmed": false
+  },
+  "limitations": [
+    "The first configured1500 trial failed its first physical gate with OperatorTimeout after the demand acknowledgement; raw0300 remained and no fan or raw restoration was attempted in that failed trial.",
+    "The separate raw recovery acknowledged and queried raw0000 but also timed out at its physical gate. Its later operator reply is a separate observation and cannot rewrite either failed result or exit2.",
+    "The final attended seven-exchange sequence succeeded with Medium, preferred quiet and final physical confirmations. This is one observed recovery, not a restoration guarantee or automatic handback.",
+    "manualRecoveryRequired=true in the earlier typed results is conservative incomplete-observation evidence, not a diagnosis of physical failure. Later recovery does not change those historical flags.",
+    "Logical exchange lists are inferred from typed result flags and reviewed source, not independent native packet counts. Planned capturedSequence or fixedSequence fields alone are not execution evidence.",
+    "Configured1500 is acknowledged demand history, not measured RPM or the initial physical Medium state. Raw0000 and raw0300 are accessory control-state observations, not fan readback or ownership.",
+    "Operator journal timestamps record saving, not YES submission times; the successful typed final gate establishes accepted confirmation even where the journal was saved after completion.",
+    "No Synapse/service restart, power cycle or lighting command was performed. Private paths, process identifiers, device-instance suffixes, serials and raw reports are excluded. BIOS is provenance only."
+  ]
+}

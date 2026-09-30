@@ -38,4 +38,22 @@ Assert-True (-not $source.Contains('deviceInterfacePath =')) `
 Assert-True (-not $source.Contains('instanceId =')) `
     'The cooling-pad inventory must not serialize a full PnP instance ID.'
 
+$tokens = $null
+$parseErrors = $null
+[Management.Automation.Language.Parser]::ParseInput($source, [ref]$tokens, [ref]$parseErrors) | Out-Null
+Assert-True ($parseErrors.Count -eq 0) 'The inventory script must parse successfully.'
+$embeddedSource = [regex]::Match($source, "(?s)Add-Type -TypeDefinition @'\r?\n(.*?)\r?\n'@")
+Assert-True $embeddedSource.Success 'The native inventory source was not found.'
+if (-not ('OpenBlade.Capture.CoolingPadHidInventory' -as [type])) {
+    Add-Type -TypeDefinition $embeddedSource.Groups[1].Value
+}
+Assert-True ($null -ne [OpenBlade.Capture.CoolingPadHidInventory].GetMethod('Enumerate')) `
+    'The metadata inventory must compile without opening a device.'
+foreach ($forbidden in @('DeviceIoControl', 'WriteFile', 'ReadFile')) {
+    Assert-True (-not $source.Contains($forbidden)) "The metadata tool must not add $forbidden device I/O."
+}
+Assert-True ($source.Contains('featureReportIdInspectionSendsReports = $false') -and
+    $source.Contains('userModeFeatureIoValidated = $false')) `
+    'Descriptor parsing must remain separate from device-report I/O validation.'
+
 Write-Host 'Cooling-pad capture-inventory regression tests passed.'

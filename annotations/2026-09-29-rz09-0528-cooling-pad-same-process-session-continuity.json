@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "CoolingPadSameProcessSessionContinuityTypedResult",
+  "evidenceProvenance": {
+    "controller": "OpenBlade.Capture commit 1baf4d6a5644652202d609a20511524afe13ed88",
+    "sourceCommit": "1baf4d6a5644652202d609a20511524afe13ed88",
+    "captureDllSha256": "79D18EA50F95339A748EFBB8CABC9B7B944B96097A1D38DE3EB65ADDB722B374",
+    "usbPcapUsed": false,
+    "independentNativeReportTraceRetained": false
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "interfaceNumber": "00",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureBufferBytes": 91,
+    "featureReportPrefixHex": "00",
+    "biosIsProvenanceOnly": true
+  },
+  "startedAtUtc": "2026-09-30T00:34:31.4476157+00:00",
+  "completedAtUtc": "2026-09-30T00:36:14.5800881+00:00",
+  "queryArtifact": {
+    "kind": "TypedSessionContinuityResultJson",
+    "sha256": "04D809ACFBD3C717B45A69492F46F20EA18718624335CE1EE120A88449C3C007",
+    "byteLength": 2012,
+    "rawArtifactCommitted": false
+  },
+  "preflight": {
+    "operatorBaselineRecordedAtUtc": "2026-09-30T00:34:31.4284392+00:00",
+    "operatorBaselineReply": "confirmed",
+    "operatorPresent": true,
+    "quietAutoConfirmed": true,
+    "fullBrightnessStaticGreenConfirmed": true,
+    "noRedOrSleepConfirmed": true,
+    "padDependentHyperBoostInactiveConfirmed": true,
+    "usbAnd12VConnectedConfirmed": true,
+    "synapseUseForbidden": true,
+    "appEngineCount": 0,
+    "usbPcapProcessCount": 0,
+    "activeRazerServiceCount": 0,
+    "recoveryAcknowledgement": "ManualPowerCycleOnly",
+    "prefilledPhysicalAnswers": false
+  },
+  "performedLogicalSequenceAccordingToResultAndReviewedSource": [
+    "00/84:0000",
+    "00/04:0300",
+    "00/84:0000",
+    "0D/10:01012C",
+    "00/84:0000",
+    "0D/10:000600",
+    "00/04:0000",
+    "00/84:0000"
+  ],
+  "sequenceEvidenceLimit": "The private capturedSequence field is the planned sequence. The successful typed result and reviewed source separately establish completion of all eight logical exchanges. This is not an independently sniffed native packet trace or packet count.",
+  "continuityBoundary": {
+    "kind": "normal-close-and-fresh-session-in-same-process",
+    "afterLogicalExchange": 4,
+    "beforeLogicalExchange": 5,
+    "firstSessionCloseAttempted": true,
+    "firstSessionClosed": true,
+    "freshSessionOpenAttempted": true,
+    "freshSessionOpened": true,
+    "rawIntermediate": "0300",
+    "freshCandidateConfirmed": true,
+    "newProcessTested": false,
+    "processCrashTested": false
+  },
+  "result": {
+    "rawBaseline": "0000",
+    "rawCandidate": "0300",
+    "rawRestored": "0000",
+    "modeAcquireAttempted": true,
+    "modeAcquireAcknowledged": true,
+    "candidateConfirmed": true,
+    "fixedAttempted": true,
+    "fixedAcknowledged": true,
+    "fixedPhysicalConfirmed": true,
+    "autoAttempted": true,
+    "autoAcknowledged": true,
+    "autoPhysicalConfirmed": true,
+    "modeRestoreAttempted": true,
+    "modeRestoreAcknowledged": true,
+    "rawRestorationConfirmed": true,
+    "finalPhysicalConfirmed": true,
+    "failurePhase": null,
+    "failure": null,
+    "manualRecoveryRequired": false,
+    "exitCode": 0,
+    "lightingCommandsSubmitted": false,
+    "recoveryPerformedByCommand": false,
+    "automaticRecovery": false,
+    "synapseActionsPerformed": false,
+    "serviceActionsPerformed": false,
+    "powerCyclePerformed": false,
+    "retryPerformed": false
+  },
+  "operatorOutcomes": [
+    {
+      "phase": "fixed",
+      "recordedAtUtc": "2026-09-30T00:35:11.6076626+00:00",
+      "userReply": "Medium; normal and green unchanged",
+      "submittedToCommand": true
+    },
+    {
+      "phase": "auto",
+      "recordedAtUtc": "2026-09-30T00:35:48.7209836+00:00",
+      "userReply": "Quiet Auto; normal and green unchanged",
+      "submittedToCommand": true
+    },
+    {
+      "phase": "final",
+      "recordedAtUtc": "2026-09-30T00:36:16.1248540+00:00",
+      "userReply": "Normal and unchanged",
+      "submittedToCommand": true
+    }
+  ],
+  "productionAdmission": {
+    "coolingPadModeWriteAdmitted": false,
+    "coolingPadFanWriteAdmitted": false,
+    "coolingPadLightingWriteAdmitted": false,
+    "openBladeHandbackValidated": false,
+    "fanStateReadbackConfirmed": false,
+    "ownershipSemanticsConfirmed": false,
+    "reason": "One attended exploratory trial completed after a normal session close and fresh session open in the same process, with raw0300 retained at the boundary and raw0000 restored. This does not establish a new-process or crash boundary, ownership, independent fan-state readback or production support."
+  },
+  "limitations": [
+    "The hash and length identify a private typed result, not PCAP or an independently retained native report trace.",
+    "Only a normal close and fresh session in the same process were tested. No new process, process crash, USB interruption, sleep, power loss or vendor handback was tested.",
+    "Medium and Quiet Auto are operator observations. No exact RPM or independent firmware fan-state or ownership readback was obtained. Raw0000 and raw0300 retain accessory-only unassigned semantics.",
+    "Operator record timestamps are bookkeeping and may follow command completion. The typed result records all three physical confirmations as accepted during the command.",
+    "No Synapse, service action, power cycle, retry or recovery occurred during this trial. ManualPowerCycleOnly records the command's recovery acknowledgement; it does not establish that recovery happened.",
+    "Private paths, process identifiers, serials and device-instance suffixes are excluded. BIOS is provenance only and imposes no admission gate."
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "CoolingPadChangingTemperatureDemandTypedTrialResult",
+  "evidenceProvenance": {
+    "sourceCommit": "68d6cdb9d260f2dcc0de1aa7c48eb68129fbb37f",
+    "captureApphostSha256": "1A6E1133290B7169A69975EBA684922D2DE5644355F85AAAE6A47C0FD39125CC",
+    "captureDllSha256": "69F0C7212A59429FC0C6AD637BB9DCD35C6EB14DA3F10BA2E64857C8CDE8A8FD",
+    "hardwareTested": true,
+    "usbPcapUsed": false,
+    "independentNativeReportTraceRetained": false
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "interfaceNumber": "00",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureBufferBytes": 91,
+    "featureReportPrefixHex": "00",
+    "biosIsProvenanceOnly": true
+  },
+  "startedAtUtc": "2026-09-30T08:11:56.3693627+00:00",
+  "completedAtUtc": "2026-09-30T08:33:00.9962058+00:00",
+  "queryArtifact": {
+    "kind": "TypedResultJson",
+    "sha256": "7E6A4617DF4D14363AD5A0802B90B39845E52E5439C47D58A050C1C65D5DF3A8",
+    "byteLength": 9449,
+    "rawArtifactCommitted": false
+  },
+  "initialPhysicalObservationConfirmed": true,
+  "initialPhysicalState": "operator-confirmed-quiet-normal-green-no-red-sleep-HyperBoost-inactive",
+  "operatorWaitSeconds": 600,
+  "benchmarkContext": {
+    "name": "Steel Nomad",
+    "userAuthorizedUiRestartBeforeTrial": true,
+    "independentPerformanceTraceRetained": false,
+    "renderingDuringDemandChangesEstablished": false
+  },
+  "planningPolicy": {
+    "cpuCurve": [
+      {
+        "temperatureCelsius": 40,
+        "demand": {
+          "rpm": 1000,
+          "isWellFormed": true
+        }
+      },
+      {
+        "temperatureCelsius": 90,
+        "demand": {
+          "rpm": 2200,
+          "isWellFormed": true
+        }
+      }
+    ],
+    "gpuCurve": [
+      {
+        "temperatureCelsius": 30,
+        "demand": {
+          "rpm": 1000,
+          "isWellFormed": true
+        }
+      },
+      {
+        "temperatureCelsius": 80,
+        "demand": {
+          "rpm": 2200,
+          "isWellFormed": true
+        }
+      }
+    ],
+    "illustrativeOpenBladePolicy": true,
+    "synapsePreset": false,
+    "configuredDelayBetweenFurtherReadingsMilliseconds": 2000,
+    "maximumHostAcquisitionAgeMilliseconds": 5000,
+    "sampleAgeMeaning": "host-acquisition-age-including-read-duration-only",
+    "sourceOriginTimestampAvailable": false,
+    "physicalConfirmationPausesHoldLastTarget": true,
+    "ageBeforeSubmissionFieldMeaning": "Runner prequeue freshness check, not the native SET instant.",
+    "cpuSourceMeaning": "EC-backed TZRZ platform/CPU-side thermal input, not per-core CPU temperature.",
+    "gpuSourceMeaning": "NVIDIA NVML temperature following the Windows activity gate.",
+    "gpuInactiveMeaning": "An available 150ms Windows GPU-engine activity sample has no qualifying non-System process above 0.1 percent utilization; not a GPU power-off guarantee. Invalid counter items can be omitted."
+  },
+  "telemetryOutcome": {
+    "readingCount": 12,
+    "preflightReadingCount": 1,
+    "initialDemandReadingCount": 1,
+    "furtherReadingCount": 10,
+    "allCpuCelsius": 45,
+    "allGpuInactive": false,
+    "initialGpuCelsius": 54,
+    "furtherGpuCelsius": 44,
+    "acknowledgedConfiguredDemandsRpm": [
+      1600,
+      1350
+    ],
+    "demandSubmissionAttemptCount": 2,
+    "demandAcknowledgementCount": 2,
+    "unchangedDemandSuppressionCount": 9,
+    "changedDemandUpdatesObserved": 1,
+    "sustainedThermalTrackingValidated": false
+  },
+  "performedLogicalSequenceAccordingToResultAndReviewedSource": [
+    "00/84:0000",
+    "00/04:0300",
+    "00/84:0000",
+    "0D/10:000600",
+    "0D/01:010520",
+    "0D/01:01051B",
+    "0D/10:01012C",
+    "0D/10:000600",
+    "00/04:0000",
+    "00/84:0000"
+  ],
+  "result": {
+    "samples": [
+      {
+        "index": 0,
+        "stage": "preflightTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 54,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 215.8341,
+        "plannedConfiguredDemandRpm": 1600,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": null,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": false
+      },
+      {
+        "index": 1,
+        "stage": "initialDemandTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 54,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 153.8729,
+        "plannedConfiguredDemandRpm": 1600,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 216.7998,
+        "submissionAttempted": true,
+        "acknowledged": true,
+        "suppressedUnchanged": false
+      },
+      {
+        "index": 2,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 171.1404,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 171.2209,
+        "submissionAttempted": true,
+        "acknowledged": true,
+        "suppressedUnchanged": false
+      },
+      {
+        "index": 3,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 164.0326,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 164.0534,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      },
+      {
+        "index": 4,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 160.4563,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 160.4828,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      },
+      {
+        "index": 5,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 160.6477,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 160.6647,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      },
+      {
+        "index": 6,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 156.494,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 156.5068,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      },
+      {
+        "index": 7,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 168.4063,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 168.4316,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      },
+      {
+        "index": 8,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 162.202,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 162.225,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      },
+      {
+        "index": 9,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 162.4541,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 162.4746,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      },
+      {
+        "index": 10,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 160.9205,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 160.9332,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      },
+      {
+        "index": 11,
+        "stage": "curveTelemetry",
+        "cpuCelsius": 45,
+        "gpuCelsius": 44,
+        "gpuInactive": false,
+        "hostAcquisitionAgeMilliseconds": 155.9518,
+        "plannedConfiguredDemandRpm": 1350,
+        "reason": "DemandPlanned",
+        "ageBeforeSubmissionMilliseconds": 155.9659,
+        "submissionAttempted": false,
+        "acknowledged": false,
+        "suppressedUnchanged": true
+      }
+    ],
+    "rawBaseline": "0000",
+    "rawCandidate": "0300",
+    "rawRestored": "0000",
+    "modeAcquireAttempted": true,
+    "modeAcquireAcknowledged": true,
+    "demandEntryAttempted": true,
+    "demandEntryAcknowledged": true,
+    "firstDemandPhysicalConfirmed": true,
+    "curvePhysicalConfirmed": true,
+    "fixedAttempted": true,
+    "fixedAcknowledged": true,
+    "fixedPhysicalConfirmed": true,
+    "autoAttempted": true,
+    "autoAcknowledged": true,
+    "autoPhysicalConfirmed": true,
+    "modeRestoreAttempted": true,
+    "modeRestoreAcknowledged": true,
+    "rawRestorationConfirmed": true,
+    "finalPhysicalConfirmed": true,
+    "temperatureSourceConstructionStarted": true,
+    "temperatureSourceDisposalConfirmed": true,
+    "failurePhase": null,
+    "failure": null,
+    "submissionStateUnknown": false,
+    "manualRecoveryRequired": false,
+    "productionAdmitted": false,
+    "measuredRpmConfirmed": false,
+    "ownershipConfirmed": false,
+    "handbackConfirmed": false
+  },
+  "trialOutcome": {
+    "exitCode": 0,
+    "trialSequenceCompleted": true,
+    "nativeRunnerInvoked": true,
+    "runnerResultUnavailable": false,
+    "submissionStateUnknown": false,
+    "manualRecoveryRequired": false,
+    "preferredAutoPhysicalConfirmed": true,
+    "preferredAutoFinalPhysicalConfirmed": true,
+    "rawControlStateRestored": true,
+    "rawControlStateIsFanReadback": false,
+    "restorationSequencePreviouslyObservedAt2200": true,
+    "restorationFromThisDemandPreviouslyValidated": false
+  },
+  "finalOperatorJournal": {
+    "recordedAtUtc": "2026-09-30T08:34:16.5773773+00:00",
+    "userReply": "yes",
+    "acceptedByRunner": true,
+    "quietNormalGreenNoRedSleepConfirmed": true
+  },
+  "postExitReadOnlyInventories": [
+    {
+      "recordedAtUtc": "2026-09-30T08:34:16.5773773+00:00",
+      "captureProcessCount": 1,
+      "activeRazerServiceCount": 0,
+      "processOwnershipInferred": false,
+      "processesModified": false
+    },
+    {
+      "recordedAtUtc": "2026-09-30T08:34:46.2710892+00:00",
+      "captureProcessCount": 0,
+      "inspectionKind": "host-CIM",
+      "processOwnershipInferred": false,
+      "processesModified": false
+    }
+  ],
+  "actions": {
+    "synapseActionsPerformed": false,
+    "serviceActionsPerformed": false,
+    "powerCyclePerformed": false,
+    "lightingCommandsSubmitted": false,
+    "automaticRecoveryPerformed": false
+  },
+  "productionAdmission": {
+    "productionAdmitted": false,
+    "measuredRpmConfirmed": false,
+    "fanStateReadbackConfirmed": false,
+    "ownershipSemanticsConfirmed": false,
+    "handbackValidated": false,
+    "fullRangePhysicallyValidated": false,
+    "sustainedThermalTrackingValidated": false,
+    "firmwareAutoRegulationConfirmed": false
+  },
+  "limitations": [
+    "One configured1600 demand and one changed1350 demand were acknowledged; nine unchanged1350 readings were suppressed. Typed result and reviewed source infer ten logical exchanges, not an independent native packet count or trace.",
+    "Preflight and initial GPU temperature were54; all ten further readings were44. CPU stayed45 and GpuInactive was false throughout. This is one downward planned-demand transition, not sustained thermal tracking, measured fan RPM or full-range validation.",
+    "The operator first-demand confirmation paused the experiment before further readings. The authorized Steel Nomad restart is UI context, not proof of rendering during either demand submission or an independent workload/performance trace.",
+    "The two-second setting is inter-read delay, not proof of regular write cadence; unchanged demands are suppressed. Operator pauses hold the last target, and stopping is not safe handback.",
+    "CPU readings are EC/TZRZ input, not CPU-core temperature; GPU readings are NVML observations. The inactive-GPU heuristic is not a power-off guarantee and was not exercised by this trial.",
+    "All five typed physical gates passed and raw0000 restoration was acknowledged and queried. Physical quiet and green lighting are operator observations; raw0000 is not fan readback, ownership or firmware Auto regulation.",
+    "The successful final operator journal was saved after process completion; it records the accepted observation, not its precise submission time.",
+    "The first post-exit inventory contained one Capture process; the subsequent host inspection contained none. Both snapshots are retained without inferring ownership, forced termination or agent cleanup.",
+    "No PCAP/native report trace, measured RPM, production admission, service/Synapse operation, power cycle or lighting command is established. Private identifiers and raw artifacts remain excluded; BIOS is provenance only."
+  ]
+}
