@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "CoolingPadHostDemand2200TypedTrialResult",
+  "purpose": "attended-single-host-demand-2200-compound-experiment",
+  "evidenceProvenance": {
+    "sourceCommit": "7a6472d07cad4d3312d0e560c0a1dc2458b5c666",
+    "captureApphostSha256": "0CB5F426C5FE2FE83C74A4E521BD2F151F65297E034B293B01E6FF98B1F6A682",
+    "captureDllSha256": "C697F009A5A20878E347CEED8E38E4A088E5D13EF506ACBDC1523099C5879C76",
+    "hardwareTested": true,
+    "usbPcapUsed": false,
+    "independentNativeReportTraceRetained": false
+  },
+  "device": {
+    "modelNumber": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "vendorIdHex": "1532",
+    "productIdHex": "0F43",
+    "revisionHex": "0200",
+    "interfaceNumber": "00",
+    "usagePageHex": "000C",
+    "usageHex": "0001",
+    "featureBufferBytes": 91,
+    "featureReportPrefixHex": "00",
+    "biosIsProvenanceOnly": true
+  },
+  "startedAtUtc": "2026-09-30T05:31:45.5808501+00:00",
+  "completedAtUtc": "2026-09-30T05:36:36.2867945+00:00",
+  "queryArtifact": {
+    "kind": "TypedHostDemand2200TrialResultJson",
+    "sha256": "9CCA1AEA250D64A1FE0148C6E0F1EF54F1B7BE6B04A35CB0A47C93D1E1C25C7A",
+    "byteLength": 2799,
+    "rawArtifactCommitted": false
+  },
+  "preflight": {
+    "operatorInitialStateRecordedAtUtc": "2026-09-30T05:31:45.5601942+00:00",
+    "operatorInitialStateReply": "yes",
+    "quietNormalGreenNoRedSleepHyperBoostInactiveConfirmed": true,
+    "usbAnd12VConnectedConfirmed": true,
+    "operatorAvailable": true,
+    "submittedToRunner": true,
+    "recoveryAcknowledgement": "ManualPowerCycleOnly"
+  },
+  "performedLogicalSequenceAccordingToResultAndReviewedSource": [
+    "00/84:0000",
+    "00/04:0300",
+    "00/84:0000",
+    "0D/10:000600",
+    "0D/01:01052C",
+    "0D/10:01012C",
+    "0D/10:000600",
+    "00/04:0000",
+    "00/84:0000"
+  ],
+  "sequenceEvidenceLimit": "The private capturedSequence field is the planned sequence only. Successful result flags and reviewed source establish nine completed logical exchanges, not an independent native packet count or report trace.",
+  "physicalTarget": {
+    "initialState": "preferred quiet Auto, normal green, no red sleep, HyperBoost inactive",
+    "configuredHostDemandRpm": 2200,
+    "hostDemandPhysicalResponseConfirmed": true,
+    "measuredRpmConfirmed": false,
+    "requestedPreferredQuietAutoAchieved": true,
+    "requestedPreferredQuietAutoFinalConfirmed": true,
+    "rawControlStateIsFanReadback": false
+  },
+  "result": {
+    "rawBaseline": "0000",
+    "rawCandidate": "0300",
+    "rawRestored": "0000",
+    "modeAcquireAttempted": true,
+    "modeAcquireAcknowledged": true,
+    "candidateConfirmed": true,
+    "demandEntryAttempted": true,
+    "demandEntryAcknowledged": true,
+    "hostDemandAttempted": true,
+    "hostDemandAcknowledged": true,
+    "hostDemandPhysicalConfirmed": true,
+    "submissionStateUnknown": false,
+    "fixedAttempted": true,
+    "fixedAcknowledged": true,
+    "fixedPhysicalConfirmed": true,
+    "autoAttempted": true,
+    "autoAcknowledged": true,
+    "autoPhysicalConfirmed": true,
+    "modeRestoreAttempted": true,
+    "modeRestoreAcknowledged": true,
+    "rawRestorationConfirmed": true,
+    "finalPhysicalConfirmed": true,
+    "failurePhase": null,
+    "failure": null,
+    "manualRecoveryRequired": false,
+    "productionAdmitted": false,
+    "fanStateConfirmed": false,
+    "ownershipConfirmed": false,
+    "handbackConfirmed": false
+  },
+  "trialOutcome": {
+    "trialSequenceCompleted": true,
+    "nativeRunnerInvoked": true,
+    "runnerResultUnavailable": false,
+    "submissionStateUnknown": false,
+    "compoundRestorationPreviouslyValidated": false,
+    "compoundRestorationObservedThisTrial": true,
+    "manualRecoveryRequired": false,
+    "exitCode": 0,
+    "synapseActionsPerformed": false,
+    "serviceActionsPerformed": false,
+    "powerCyclePerformedDuringThisSequence": false,
+    "retryPerformed": false,
+    "lightingCommandsSubmitted": false,
+    "lifecycleBoundaryTested": false
+  },
+  "operatorOutcomes": [
+    {
+      "phase": "host-demand",
+      "recordedAtUtc": "2026-09-30T05:34:39.0496017+00:00",
+      "userReply": "yes",
+      "observation": "configured 2200 demand produced a normal physical response; RPM not measured",
+      "greenLightingUnchanged": true,
+      "noRedOrSleep": true,
+      "submittedToRunner": true
+    },
+    {
+      "phase": "fixed",
+      "recordedAtUtc": "2026-09-30T05:35:20.4847992+00:00",
+      "userReply": "yes",
+      "observation": "normal Medium",
+      "greenLightingUnchanged": true,
+      "noRedOrSleep": true,
+      "submittedToRunner": true
+    },
+    {
+      "phase": "auto",
+      "recordedAtUtc": "2026-09-30T05:36:00.0511200+00:00",
+      "userReply": "yes",
+      "observation": "preferred quiet Auto",
+      "greenLightingUnchanged": true,
+      "noRedOrSleep": true,
+      "submittedToRunner": true
+    },
+    {
+      "phase": "final",
+      "recordedAtUtc": "2026-09-30T05:36:37.9009220+00:00",
+      "userReply": "yes",
+      "observation": "preferred quiet Auto remains normal",
+      "greenLightingUnchanged": true,
+      "noRedOrSleep": true,
+      "submittedToRunner": true
+    }
+  ],
+  "productionAdmission": {
+    "coolingPadFanWriteAdmitted": false,
+    "fullDemandRangePhysicallyValidated": false,
+    "measuredRpmConfirmed": false,
+    "fanStateReadbackConfirmed": false,
+    "ownershipSemanticsConfirmed": false,
+    "openBladeHandbackValidated": false,
+    "smartCurveCadenceValidated": false
+  },
+  "limitations": [
+    "One attended configured-demand 2200 trial succeeded through demand entry, host demand, Fixed Medium, preferred quiet Auto and raw0000 restoration. This is one observed compound restoration, not a general restoration guarantee. compoundRestorationPreviouslyValidated=false describes knowledge before this attempt.",
+    "Configured demand is not measured RPM. Physical confirmations do not establish independent fan-state, ownership or handback semantics; raw0000 and raw0300 remain unassigned accessory control-state observations.",
+    "The planned capturedSequence list is not execution evidence by itself. Typed result flags and reviewed source establish nine logical exchanges; no PCAP or independently retained native report trace was obtained.",
+    "Exact operator timestamps are journal-save times, not YES submission timestamps; final journal saving followed trial completion. The successful typed result establishes that confirmations were accepted during the command.",
+    "No Synapse, service operation, power cycle, retry or lifecycle boundary was performed in this sequence. Earlier failed trials and their recovery records remain unchanged separate evidence.",
+    "No full vendor demand range, sustained thermal curve, recurring demand cadence, measured speed, crash behavior or production admission was validated.",
+    "Private paths, process identifiers, authentication secrets, serials, device-instance suffixes, module identifiers and raw native reports are excluded. BIOS is provenance only."
+  ],
+  "postTrialReadOnlyInventory": {
+    "recordedAtUtc": "2026-09-30T05:38:37.6298445+00:00",
+    "blockedProcessCount": 0,
+    "activeRazerServiceCount": 0,
+    "nativeControlReportsSent": false
+  }
+}
