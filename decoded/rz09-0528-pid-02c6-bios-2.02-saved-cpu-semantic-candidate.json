@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "kind": "SavedCpuSemanticAdmissionCandidate",
+  "reviewState": "DraftCandidateForReview",
+  "productionAccess": "NotAdmitted",
+  "runtimeAuthority": false,
+  "device": {
+    "scopeBasis": "Exact required identity in the exercised reader source; raw SKU output was not separately retained in the cycle event logs",
+    "manufacturer": "Razer",
+    "product": "Blade 16 - RZ09-0528",
+    "model": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "usbVendorId": "1532",
+    "usbProductId": "02C6",
+    "biosVersion": "2.02"
+  },
+  "target": "FirmwareNextBoot",
+  "transport": {
+    "provider": "AMD_ACPI",
+    "requiredVersion": 7,
+    "methods": ["QueryVersion", "RunCommand"],
+    "payloadLengthBytes": 8,
+    "payloadShape": "UInt32 little-endian function followed by UInt32 little-endian argument",
+    "versionAcknowledgement": "UInt32 version 7 is mandatory. Boolean true ReturnValue or successfully enumerated absence under the exact compatibility profile is accepted; false, null, wrong type and property/enumeration errors are refused.",
+    "commandAcknowledgement": "The same ReturnValue rule plus a byte-array Outbuf.result of 1 through 4096 bytes whose first byte is zero. Acknowledgement alone never establishes saved state or ownership.",
+    "rawSetterReturnValueObservation": null,
+    "metadataGetterCompatibilityEvidenceUsed": false,
+    "physicalAcknowledgementEvidence": "The actual Service transaction completed its required acknowledgement and full-pair readback path. Raw setter ReturnValue states were not individually retained by the cycle event records."
+  },
+  "sourceDerivedCommandFamilies": {
+    "allCoreCurveOptimizer": {
+      "function": "0x0005000A",
+      "argumentShape": "0x11FF0000 OR magnitude, where magnitude is the negation of the requested signed offset",
+      "proposedEditorOffsets": { "minimum": -30, "maximum": -1, "step": 1 },
+      "disabledOffset": 0,
+      "disabledMeaning": "Supported all-core negative-sign mode with zero magnitude; not curve mode zero",
+      "sourceFieldWrites": ["0x94 policy=2", "0xC0 mode=1", "0xC1 sign=1", "0xC2..0xC3 magnitude"],
+      "fullRangePhysicallyValidated": false
+    },
+    "powerLimit": {
+      "function": "0x00050001",
+      "argumentShape": "Requested integer watts multiplied by 1000",
+      "proposedEditorWatts": { "minimum": 45, "maximum": 95, "step": 1 },
+      "sourceFieldWrites": ["0x94 policy=2", "0x95 custom mode=2", "0x96..0x99 UInt32 argument"],
+      "fullRangePhysicallyValidated": false
+    },
+    "defaultPowerRestoration": {
+      "function": "0x00050001",
+      "argument": 0,
+      "purpose": "Exact original restoration only; never editable zero watts",
+      "requiredOriginal": "Policy 2, power mode 0xFF and all five power words zero, with full-image reverse simulation equal to the preserved original",
+      "sourceCommonCompletion": "The common completion sets power mode to 0xFF when the five UInt32 words at 0x96, 0x9A, 0x9E, 0xA2 and 0xA6 are all zero"
+    },
+    "scopeLimit": "These are reviewed-source and existing typed-software semantics proposed for admission. They are not evidence that every value, baseline or combined request has been exercised on hardware."
+  },
+  "savedReadbackContract": {
+    "copies": ["AodSetupStx", "AodSetupStxLast"],
+    "lengthBytesEach": 800,
+    "requiredAttributes": 7,
+    "baseline": "Fresh successful reads of both complete, byte-equal copies; preserve each original independently",
+    "forwardVerification": "Compare both complete images with the exact predicted result, including all unselected fields",
+    "restorationVerification": "Compare each complete copy with its own preserved original",
+    "powerSiblingPreservation": "50001 changes the first power word only; the four words at 0x9A, 0x9E, 0xA2 and 0xA6 remain exact",
+    "commonModeRule": "The all-five-zero power-mode completion rule also applies after a CO command",
+    "meaning": "Saved configuration only; no inference of running CPU settings or boot activation"
+  },
+  "physicalValidation": [
+    {
+      "family": "AllCoreCurveOptimizer",
+      "baselineOffset": -1,
+      "forwardOffset": 0,
+      "restoreOffset": -1,
+      "forwardChangedByteOffsets": ["0xC2"],
+      "powerFieldsPreserved": true,
+      "fullPairForwardAndRestoreVerified": true,
+      "realDurableJournalUsed": true,
+      "restorationInNewProcess": true,
+      "finalJournalState": "Restored",
+      "pendingSteps": 0,
+      "evidenceForm": "Retained runtime full-pair assertions, terminal events and real journal; no separately retained final image files in this Service-cycle record"
+    },
+    {
+      "family": "PowerLimit",
+      "baseline": "Policy 2, mode 0xFF, five zero power words",
+      "forwardWatts": 45,
+      "forwardSavedArgument": 45000,
+      "restore": "Exact default restoration with argument zero",
+      "forwardChangedByteOffsets": ["0x95", "0x96", "0x97"],
+      "fourPowerSiblingsPreserved": true,
+      "curveOptimizerRemained": -1,
+      "fullPairForwardAndRestoreVerified": true,
+      "realDurableJournalUsed": true,
+      "restorationInNewProcess": true,
+      "finalJournalState": "Restored",
+      "pendingSteps": 0,
+      "evidenceForm": "Retained runtime events, real journal and separate original/forward/restored full-image pairs; direct offline comparison confirms exact restoration"
+    }
+  ],
+  "requiredOperationAdmission": [
+    "Fresh exact host, SKU, USB and BIOS identity; valid paired saved observation is necessary but does not itself authorize a command",
+    "Admit the complete exact forward and original reverse plan before any submission, including every owned feature",
+    "Recheck the initiating session and power generation, AC state, competing-controller absence, exact expected pair and native version before each setter",
+    "Persist PossibleSubmission before invocation; advance only after accepted acknowledgement and full readback",
+    "Stop on ambiguous submission, readback drift or persistence uncertainty; no automatic compensation or replay",
+    "RestoreReady recovery plus fresh exact owned state and admitted reverse are required; RestorePending alone is not permission"
+  ],
+  "notEstablished": [
+    "Production admission",
+    "Installed LocalSystem Service and active-session IPC save/readback/new-process-journal restoration cycle",
+    "Boot activation or running CPU effects",
+    "Other CO values, other PPT values, custom-PPT original restoration or combined saved edits on hardware",
+    "Live CO/PPT setters, AMD loaded-driver lifetime or power-transition continuity",
+    "Safety, performance or stability under workload"
+  ],
+  "publicationAndAdmissionBoundary": "Independent review and explicit permission to publish derived evidence are required. Production access remains NotAdmitted until the semantic policy is reviewed and the installed Service/session IPC cycle is completed. Importing this candidate or any private receipt must never enable a runtime gate."
+}
