@@ -38,3 +38,17 @@ commands, tool reference, evidence workflow, and admission checklist.
 - `templates`: versioned starting documents for new investigations.
 - `tests`: synthetic offline regressions that never access live hardware.
 - `tools`: capture, decoding, comparison, sanitization, and validation scripts.
+
+## RZ09-0528 saved CPU evidence
+
+The [saved CPU semantic candidate](decoded/rz09-0528-pid-02c6-bios-2.02-saved-cpu-semantic-candidate.json)
+records driverless next-boot CO/PPT command semantics and the attended developer
+save/readback/new-process journal/restoration cycles exercised through
+`openblade-core` source `df3bd200`. It retains the evidence limits, including
+source-enforced SKU identity and setter acknowledgment without separately
+retained raw field observations.
+
+This fixture remains `NotAdmitted`. It does not enable production controls or
+establish installed service/session IPC, live settings or boot activation.
+See [capture issue #34](https://github.com/OpenBladeProject/openblade-captures/issues/34)
+and [core PR #623](https://github.com/OpenBladeProject/openblade-core/pull/623).
