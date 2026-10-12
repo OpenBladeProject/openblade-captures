@@ -3,7 +3,8 @@
 This runbook is for protocol research on a Razer Blade model that OpenBlade does
 not yet support. It does not authorize firmware writes. A command becomes a
 production capability only after it passes every admission check in this guide
-for the exact model and firmware family.
+for the exact model. Record tested firmware as provenance; restrict firmware
+versions only when the reviewed admission rule explicitly requires it.
 
 ## Safety model
 
@@ -176,7 +177,7 @@ Leave the relevant vendor page idle for several seconds, then create the
 changing exactly one value once and leaving enough quiet time before and after
 the action.
 
-The runner does the following:
+The runner:
 
 - starts USBPcapCMD with `CREATE_NEW_PROCESS_GROUP`;
 - records PID, process-group ID, start time, executable, and output ownership;
@@ -281,9 +282,11 @@ The interactive runner must:
 8. query restoration and compare it; and
 9. emit a bounded result with no raw traffic.
 
-If a getter does not exist, the command remains setter-only and cannot be
-profiled, automatically reapplied, or labeled as current state. Visual
-confirmation alone does not replace restoration.
+Without independent readback, a setter cannot establish confirmed current
+firmware state. OpenBlade may retain desired profile settings and, for lighting,
+reapply them when the user-enabled override policy permits it and fresh safety
+checks pass. An ambiguous write must not be replayed. Visual confirmation alone
+does not replace restoration.
 
 ## 8. Coverage matrix
 
@@ -412,7 +415,8 @@ PowerShell host otherwise waits for a mandatory-parameter prompt.
 A capability is ready for the OpenBlade production table only when each check
 passes independently:
 
-- exact model/PID/firmware scope is explicit;
+- exact model/PID scope, tested firmware, and any explicit firmware restriction
+  are recorded;
 - at least one sanitized oracle capture is committed;
 - request and response decode deterministically;
 - checksum, bounds, transaction ID, status, and timeout are validated;
@@ -420,10 +424,11 @@ passes independently:
 - the typed setter applies the requested value;
 - readback matches;
 - prior state restores and readback confirms restoration;
-- unsupported devices and firmware produce zero writes;
+- unsupported devices and firmware excluded by an explicit admission rule
+  produce zero writes;
 - conflict policy produces the intended zero-write or explicit-reclaim result;
 - lifecycle and power-state tests pass; and
 - unit tests use the committed fixture.
 
-Anything short of this remains capture evidence or a developer-only probe, not
-an advertised control.
+Until these checks pass, keep the command as capture evidence or a
+developer-only probe.
