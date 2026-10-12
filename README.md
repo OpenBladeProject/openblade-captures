@@ -10,8 +10,8 @@ readback, restoration, sanitization, and production admission.
 
 Installed Razer driver packages are tracked in the
 [`blade-driver-catalog`](https://github.com/OSSBlade/blade-driver-catalog).
-Use that catalog for package inventory and export work. This
-repository keeps the protocol captures and physical evidence used to decide
+Use that catalog for package inventory and export work. This repository keeps
+the protocol captures and physical evidence used to decide
 whether a package supports a device capability.
 
 General OpenBlade documentation is in
