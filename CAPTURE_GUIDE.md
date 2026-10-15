@@ -1,5 +1,7 @@
 # Capturing an unsupported Razer Blade
 
+English | [简体中文](docs/zh-CN/CAPTURE_GUIDE.md) | [Русский](docs/ru-RU/CAPTURE_GUIDE.md)
+
 This runbook is for protocol research on a Razer Blade model that OpenBlade does
 not yet support. It does not authorize firmware writes. A command becomes a
 production capability only after it passes every admission check in this guide

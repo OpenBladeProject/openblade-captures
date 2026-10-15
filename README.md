@@ -1,5 +1,7 @@
 # OpenBlade capture toolkit
 
+English | [简体中文](README.zh-CN.md) | [Русский](README.ru-RU.md)
+
 This repository contains Windows tools and reviewed protocol evidence for
 researching Razer Blade firmware interfaces. Keeping capture work in a separate
 repository helps keep raw evidence out of product releases.
