@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "kind": "LiveCpuCurveSemanticValidationCandidate",
+  "reviewState": "DraftCandidateForReview",
+  "productionAccess": "NotAdmitted",
+  "runtimeAuthority": false,
+  "device": {
+    "model": "RZ09-0528",
+    "sku": "RZ09-05289EN4",
+    "usbVendorId": "1532",
+    "usbProductId": "02C6",
+    "biosVersion": "2.02",
+    "scopeBasis": "Required exact model/USB VID/PID and host SKU were checked. Host Manufacturer/ProductName/SKU/BIOS strings were retained in private provenance records; raw USB instance strings were not retained. BIOS 2.02 is observed provenance, not admission.",
+    "biosIsAdmission": false
+  },
+  "target": "LiveCpu",
+  "sourceDerivedContract": {
+    "message": "0x53",
+    "argumentEncoding": "((physicalCoreId / 8) << 28) OR ((physicalCoreId % 8) << 20) OR UInt16 signed offset",
+    "enabledCoreMask": "0xFF55",
+    "physicalCoreIds": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "pmVersion": "0x005D000B",
+    "pmLengthBytes": 3408,
+    "fullRangePhysicallyValidated": false
+  },
+  "physicalValidation": {
+    "baselineAll12Offsets": -1,
+    "selectedCoreId": 0,
+    "forwardOffset": 0,
+    "forwardArgument": "0x00000000",
+    "restoreOffset": -1,
+    "restoreArgument": "0x0000FFFF",
+    "setterCount": 2,
+    "setterAcknowledgementsConfirmed": true,
+    "other11OffsetsUnchanged": true,
+    "fullOriginalVectorRestored": true,
+    "nativeWorkerTerminalAtEachReturn": true,
+    "nativeSessionCleanupConfirmed": true,
+    "ownedDriverRegistrationRemoved": true,
+    "childAndSupervisorTerminal": true,
+    "independentReviewPassed": true
+  },
+  "metadataObservation": {
+    "pairs": 5,
+    "version": 7,
+    "selector": "0x5000A",
+    "minimumMagnitude": 0,
+    "maximumMagnitude": 50,
+    "step": 1,
+    "versionReturnValueState": "ConfirmedAbsent",
+    "rangeReturnValueState": "ConfirmedAbsent",
+    "publicTrustedReaderInvoked": false,
+    "currentIsActiveCo": false,
+    "unitsAuthority": "Source-mapped negated offset magnitude; observation alone does not admit writes"
+  },
+  "notEstablished": [
+    "Other cores or offset values on hardware",
+    "General forward or restoration admission",
+    "Live PPT writes or exact original requested-state interpretation",
+    "Persistent boot or power-transition continuity",
+    "Crash or ambiguous-submission recovery",
+    "Installed production Service/session IPC composition",
+    "Performance, thermal or stability effects"
+  ],
+  "publicationAndAdmissionBoundary": "Explicit permission to publish derived evidence and independent review are required. This candidate contains no raw files, machine-local paths, process/run identifiers or private hashes. Importing it must never independently enable runtime access."
+}
